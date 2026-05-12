@@ -4,7 +4,7 @@ const LIVE_CITATIONS_URL =
 const AUTHOR_DETAIL_URL = (id) =>
   `https://api.semanticscholar.org/graph/v1/author/${id}?fields=citationCount,hIndex,paperCount`;
 
-const FALLBACK_STATS = { citations: 85, hIndex: 7, papers: 14 };
+const FALLBACK_STATS = { citations: 0, hIndex: 0, papers: 14 };
 
 async function fetchLiveStats() {
   try {
