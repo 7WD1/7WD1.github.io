@@ -1,3 +1,45 @@
+// ===== Live Citation Data (Semantic Scholar) =====
+const LIVE_CITATIONS_URL =
+  'https://api.semanticscholar.org/graph/v1/author/search?query=Wen-Dong+Jiang';
+const AUTHOR_DETAIL_URL = (id) =>
+  `https://api.semanticscholar.org/graph/v1/author/${id}?fields=citationCount,hIndex,paperCount`;
+
+const FALLBACK_STATS = { citations: 85, hIndex: 7, papers: 14 };
+
+async function fetchLiveStats() {
+  try {
+    // Step 1: find author ID
+    const searchRes = await fetch(LIVE_CITATIONS_URL);
+    if (!searchRes.ok) throw new Error('search failed');
+    const searchData = await searchRes.json();
+    const author = searchData.data?.find(
+      a => a.name === 'Wen-Dong Jiang' || a.name === 'Wendong Jiang'
+    );
+    if (!author) throw new Error('author not found');
+
+    // Step 2: fetch metrics
+    const detailRes = await fetch(AUTHOR_DETAIL_URL(author.authorId));
+    if (!detailRes.ok) throw new Error('detail failed');
+    const detail = await detailRes.json();
+
+    return {
+      citations: detail.citationCount || FALLBACK_STATS.citations,
+      hIndex: detail.hIndex || FALLBACK_STATS.hIndex,
+      papers: detail.paperCount || FALLBACK_STATS.papers,
+    };
+  } catch (e) {
+    console.warn('Semantic Scholar fetch failed, using fallback:', e.message);
+    return FALLBACK_STATS;
+  }
+}
+
+function updateStatsDisplay(stats) {
+  const citationsEl = document.querySelector('.stat-card:nth-child(2) .stat-number');
+  const hIndexEl = document.querySelector('.stat-card:nth-child(3) .stat-number');
+  if (citationsEl) citationsEl.textContent = stats.citations.toLocaleString();
+  if (hIndexEl) hIndexEl.textContent = stats.hIndex.toLocaleString();
+}
+
 // ===== Wen-Dong Jiang — Publications Data =====
 
 const publications = [
@@ -314,3 +356,6 @@ filterBtns.forEach(btn => {
 
 // ===== Initialize =====
 renderPublications(publications);
+
+// Fetch live citation data from Semantic Scholar
+fetchLiveStats().then(updateStatsDisplay);
