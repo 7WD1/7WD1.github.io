@@ -151,110 +151,6 @@ const publications = [
     doi: null,
   },
 
-  // ---- Preprints ----
-  {
-    type: 'preprint',
-    authors: 'W.-D. Jiang, C.-Y. Chang, S.-C. Kuai, and D. S. Roy',
-    title: 'From Explicit Rules to Implicit Reasoning in an Interpretable Violence Monitoring System',
-    venue: 'arXiv preprint',
-    year: 2024, month: 'Oct.',
-    jcr: null,
-    doi: '10.48550/arXiv.2410.21991',
-    arxiv: '2410.21991',
-  },
-  {
-    type: 'preprint',
-    authors: 'W.-D. Jiang, C.-Y. Chang, S.-J. Yen, and D. S. Roy',
-    title: 'Explaining the Unexplained: Revealing Hidden Correlations for Better Interpretability',
-    venue: 'arXiv preprint',
-    year: 2024, month: 'Dec.',
-    jcr: null,
-    doi: '10.48550/arXiv.2412.01365',
-    arxiv: '2412.01365',
-  },
-  {
-    type: 'preprint',
-    authors: 'W.-D. Jiang, C.-Y. Chang, H.-C. Chang, J.-Y. Chen, and D. S. Roy',
-    title: 'Injecting Explainability and Lightweight Design into Weakly Supervised Video Anomaly Detection Systems',
-    venue: 'arXiv preprint',
-    year: 2024, month: 'Dec.',
-    jcr: null,
-    doi: '10.48550/arXiv.2412.20201',
-    arxiv: '2412.20201',
-  },
-  {
-    type: 'preprint',
-    authors: 'Y.-S. Lee, S.-J. Yen, W. Jiang, J. Chen, and C.-Y. Chang',
-    title: 'Not Just Explain but Explain Well: Interpretable Machine Learning Based on Ensemble Trees',
-    venue: 'SSRN Electron. J., Tech. Rep.',
-    year: 2024,
-    jcr: null,
-    url: 'https://ssrn.com/abstract=4854192',
-  },
-  {
-    type: 'preprint',
-    authors: 'W.-D. Jiang, Y.-S. Lee, C.-Y. Chang, M.-Y. Su, and D. S. Roy',
-    title: 'Focusing on Interpretability in Multimodal Systems for Violence Detection',
-    venue: 'SSRN Electron. J., Tech. Rep.',
-    year: 2024,
-    jcr: null,
-    url: 'https://ssrn.com/abstract=4981368',
-  },
-  {
-    type: 'preprint',
-    authors: 'W.-D. Jiang, C.-Y. Chang, and D. S. Roy',
-    title: 'Detection, Retrieval, and Explanation Unified: A Violence Detection System Based on Knowledge Graphs and GAT',
-    venue: 'arXiv preprint',
-    year: 2025, month: 'Jan.',
-    jcr: null,
-    doi: '10.48550/arXiv.2501.06224',
-    arxiv: '2501.06224',
-  },
-  {
-    type: 'preprint',
-    authors: 'W.-D. Jiang',
-    title: 'Orthogonal Counterfactual Graph Attribution for Stable Simulation-Based Model Explanation',
-    venue: 'preprint',
-    year: 2026, month: 'May',
-    jcr: null,
-    doi: '10.13140/RG.2.2.22180.85127',
-  },
-  {
-    type: 'preprint',
-    authors: 'W.-D. Jiang',
-    title: 'HBS-Shapley: Hierarchical Bootstrap Shapley for Stable and Reliable Model Interpretation',
-    venue: 'preprint',
-    year: 2026, month: 'May',
-    jcr: null,
-    doi: '10.13140/RG.2.2.35602.62408',
-  },
-  {
-    type: 'preprint',
-    authors: 'W.-D. Jiang',
-    title: 'TIDE: Transport-Induced Debiased Explanations for Simulation-Grounded Model Interpretation',
-    venue: 'preprint',
-    year: 2026, month: 'May',
-    jcr: null,
-    doi: '10.13140/RG.2.2.28891.73765',
-  },
-  {
-    type: 'preprint',
-    authors: 'W.-D. Jiang',
-    title: 'Stein-Wasserstein Spectral Explanation Operators for Simulation-Grounded Model Attribution',
-    venue: 'preprint',
-    year: 2026, month: 'Jan.',
-    jcr: null,
-    doi: '10.13140/RG.2.2.19035.12320',
-  },
-  {
-    type: 'preprint',
-    authors: 'W.-D. Jiang',
-    title: 'OSCE: Orthogonal Spectral Contrast Explanations for Simulator-Grounded Model Interpretation',
-    venue: 'preprint',
-    year: 2026, month: 'Jan.',
-    jcr: null,
-    doi: '10.13140/RG.2.2.32456.89603',
-  },
 ];
 
 // ===== DOM Elements =====
@@ -353,7 +249,6 @@ function createPubCard(pub) {
   const typeLabel = {
     journal: 'Journal',
     conference: 'Conference',
-    preprint: 'Preprint',
   }[pub.type] || '';
 
   return `
@@ -378,29 +273,42 @@ function renderPublications(pubs) {
   pubList.innerHTML = pubs.map(createPubCard).join('');
 }
 
-// ===== Filter Functionality =====
+// ===== Search + Filter Functionality =====
+const searchInput = document.getElementById('pub-search-input');
 let currentFilter = 'all';
+let searchQuery = '';
 
+function applyFilters() {
+  const cards = pubList.querySelectorAll('.pub-card');
+  cards.forEach(card => {
+    const type = card.getAttribute('data-type');
+    const cardText = card.textContent.toLowerCase();
+
+    // Type filter
+    let showByType = currentFilter === 'all' || type === currentFilter;
+
+    // Search filter
+    let showBySearch = !searchQuery || cardText.includes(searchQuery.toLowerCase());
+
+    card.style.display = (showByType && showBySearch) ? '' : 'none';
+  });
+}
+
+// Search input
+if (searchInput) {
+  searchInput.addEventListener('input', () => {
+    searchQuery = searchInput.value.trim();
+    applyFilters();
+  });
+}
+
+// Filter buttons
 filterBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     filterBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     currentFilter = btn.getAttribute('data-filter');
-
-    const cards = pubList.querySelectorAll('.pub-card');
-    cards.forEach(card => {
-      const type = card.getAttribute('data-type');
-      const jcr = card.getAttribute('data-jcr');
-
-      let show = true;
-      if (currentFilter === 'journal') show = type === 'journal';
-      else if (currentFilter === 'conference') show = type === 'conference';
-      else if (currentFilter === 'preprint') show = type === 'preprint';
-      else if (currentFilter === 'Q1') show = jcr === 'Q1';
-      // 'all': show everything
-
-      card.style.display = show ? '' : 'none';
-    });
+    applyFilters();
   });
 });
 

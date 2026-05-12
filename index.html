@@ -24,6 +24,7 @@
   <!-- Hero Section -->
   <header id="home" class="hero">
     <div class="hero-content">
+      <img src="wen-dong jiang.png" alt="Wen-Dong Jiang" class="hero-avatar">
       <h1 class="hero-name">Wen-Dong Jiang</h1>
       <p class="hero-title">Interpretable Machine Learning &middot; Smart City &middot; Multimodal Explanation</p>
       <p class="hero-affiliation">Tamkang University, Taiwan</p>
@@ -41,10 +42,22 @@
     <div class="container">
       <h2 class="section-title">About</h2>
       <p class="about-text">
-        Wen-Dong Jiang is a graduate student member of IEEE. He received his B.S. degree from the
-        Department of Multimedia and Game Science Development, Lunghwa University of Science and
-        Technology, Taoyuan, Taiwan, in 2021. His research interests include interpretable machine
-        learning, smart city applications, and multimodal explanation systems.
+        Wen-Dong Jiang (Graduate Student Member, IEEE) received the B.S. degree in
+        multimedia and game science development from the Lunghwa University of Science
+        and Technology, Taoyuan, Taiwan, in 2021, and the M.S. degree in computer science
+        and information engineering from Ming Chuan University, Taoyuan, in 2023. He
+        received the Ph.D. degree in computer science and information engineering from
+        Tamkang University, New Taipei, Taiwan, in 2026. He has published several research
+        articles in leading journals, including IEEE TRANSACTIONS ON SYSTEMS, MAN, AND
+        CYBERNETICS: SYSTEMS, IEEE TRANSACTIONS ON BIG DATA, IEEE TRANSACTIONS ON EMERGING
+        TOPICS IN COMPUTATIONAL INTELLIGENCE, IPM, and ESWA. His research interests include
+        interpretable machine learning and its applications in smart cities.
+      </p>
+      <p class="about-text" style="margin-top:16px;">
+        Dr. Jiang was a recipient of the Best Paper Award at WASN 2024 and DLT 2024, as well
+        as the Best Presentation Award at the ICCE-TW 2025 Special Session on Artificial
+        Intelligence Applications and Technologies in the Internet of Things. He also serves
+        as a reviewer for multiple international journals.
       </p>
     </div>
   </section>
@@ -54,22 +67,18 @@
     <div class="container">
       <h2 class="section-title">Academic Metrics</h2>
       <div class="stats-grid">
-        <div class="stat-card clickable" data-target="23">
-          <div class="stat-number" id="counter-publications">23</div>
+        <div class="stat-card clickable" data-target="14">
+          <div class="stat-number" id="counter-publications">14</div>
           <div class="stat-label">Publications</div>
           <div class="stat-hint">click to animate</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">60</div>
+          <div class="stat-number">85</div>
           <div class="stat-label">Citations</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">5</div>
-          <div class="stat-label">H-Index</div>
-        </div>
-        <div class="stat-card">
           <div class="stat-number">7</div>
-          <div class="stat-label">JCR Q1 Papers</div>
+          <div class="stat-label">H-Index</div>
         </div>
       </div>
     </div>
@@ -79,16 +88,17 @@
   <section id="publications" class="section">
     <div class="container">
       <h2 class="section-title">Publications</h2>
-      <div class="pub-filters">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="journal">Journal</button>
-        <button class="filter-btn" data-filter="conference">Conference</button>
-        <button class="filter-btn" data-filter="preprint">Preprint</button>
-        <button class="filter-btn" data-filter="Q1">JCR Q1</button>
+      <div class="pub-toolbar">
+        <div class="pub-search">
+          <input type="text" id="pub-search-input" placeholder="Search publications...">
+        </div>
+        <div class="pub-filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="journal">Journal</button>
+          <button class="filter-btn" data-filter="conference">Conference</button>
+        </div>
       </div>
-      <div class="pub-list" id="pub-list">
-        <!-- Dynamically populated -->
-      </div>
+      <div class="pub-list" id="pub-list"></div>
     </div>
   </section>
 
