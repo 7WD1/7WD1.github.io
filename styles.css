@@ -182,8 +182,8 @@ body {
 .about-text {
   font-size: 1.05rem;
   color: var(--text-secondary);
-  max-width: 720px;
   line-height: 1.8;
+  text-align: justify;
 }
 
 /* ===== Stats Grid ===== */
