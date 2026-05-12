@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Personal Academic Website</title>
+  <title>Wen-Dong Jiang - Homepage</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Navigation -->
   <nav class="nav">
     <div class="nav-container">
-      <a href="#home" class="nav-logo">Home</a>
+      <a href="#home" class="nav-logo">Wen-Dong Jiang</a>
       <div class="nav-links">
         <a href="#about">About</a>
-        <a href="#stats">Stats</a>
+        <a href="#stats">Metrics</a>
         <a href="#publications">Publications</a>
       </div>
     </div>
@@ -24,9 +24,15 @@
   <!-- Hero Section -->
   <header id="home" class="hero">
     <div class="hero-content">
-      <h1 class="hero-name">Dr. Wang</h1>
-      <p class="hero-title">Researcher in Computer Science</p>
-      <p class="hero-affiliation">University / Research Institute</p>
+      <h1 class="hero-name">Wen-Dong Jiang</h1>
+      <p class="hero-title">Interpretable Machine Learning &middot; Smart City &middot; Multimodal Explanation</p>
+      <p class="hero-affiliation">Tamkang University, Taiwan</p>
+      <div class="hero-links">
+        <a href="mailto:verified@ieee.org">Email</a>
+        <a href="https://scholar.google.com/citations?user=poeekH0AAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+        <a href="https://dblp.org/pid/391/4753" target="_blank" rel="noopener">dblp</a>
+        <a href="https://github.com/7WD1" target="_blank" rel="noopener">GitHub</a>
+      </div>
     </div>
   </header>
 
@@ -35,9 +41,10 @@
     <div class="container">
       <h2 class="section-title">About</h2>
       <p class="about-text">
-        Research interests in machine learning, natural language processing, and computer vision.
-        Focused on building intelligent systems that bridge the gap between human communication
-        and machine understanding.
+        Wen-Dong Jiang is a graduate student member of IEEE. He received his B.S. degree from the
+        Department of Multimedia and Game Science Development, Lunghwa University of Science and
+        Technology, Taoyuan, Taiwan, in 2021. His research interests include interpretable machine
+        learning, smart city applications, and multimodal explanation systems.
       </p>
     </div>
   </section>
@@ -47,25 +54,22 @@
     <div class="container">
       <h2 class="section-title">Academic Metrics</h2>
       <div class="stats-grid">
-        <div class="stat-card" data-target="42">
-          <div class="stat-number" id="counter-publications">0</div>
+        <div class="stat-card clickable" data-target="23">
+          <div class="stat-number" id="counter-publications">23</div>
           <div class="stat-label">Publications</div>
-          <div class="stat-hint">click to replay</div>
+          <div class="stat-hint">click to animate</div>
         </div>
-        <div class="stat-card" data-target="1280">
-          <div class="stat-number" id="counter-citations">0</div>
+        <div class="stat-card">
+          <div class="stat-number">60</div>
           <div class="stat-label">Citations</div>
-          <div class="stat-hint">click to replay</div>
         </div>
-        <div class="stat-card" data-target="18">
-          <div class="stat-number" id="counter-hindex">0</div>
+        <div class="stat-card">
+          <div class="stat-number">5</div>
           <div class="stat-label">H-Index</div>
-          <div class="stat-hint">click to replay</div>
         </div>
-        <div class="stat-card" data-target="8">
-          <div class="stat-number" id="counter-jcrq1">0</div>
+        <div class="stat-card">
+          <div class="stat-number">7</div>
           <div class="stat-label">JCR Q1 Papers</div>
-          <div class="stat-hint">click to replay</div>
         </div>
       </div>
     </div>
@@ -74,13 +78,13 @@
   <!-- Publications Section -->
   <section id="publications" class="section">
     <div class="container">
-      <h2 class="section-title">Selected Publications</h2>
+      <h2 class="section-title">Publications</h2>
       <div class="pub-filters">
         <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="journal">Journal</button>
+        <button class="filter-btn" data-filter="conference">Conference</button>
+        <button class="filter-btn" data-filter="preprint">Preprint</button>
         <button class="filter-btn" data-filter="Q1">JCR Q1</button>
-        <button class="filter-btn" data-filter="Q2">JCR Q2</button>
-        <button class="filter-btn" data-filter="Q3">JCR Q3</button>
-        <button class="filter-btn" data-filter="Q4">JCR Q4</button>
       </div>
       <div class="pub-list" id="pub-list">
         <!-- Dynamically populated -->
@@ -90,9 +94,9 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <p>&copy; 2026 Dr. Wang. All rights reserved.</p>
+    <p>&copy; 2026 Wen-Dong Jiang. All rights reserved.</p>
   </footer>
 
-  <script type="module" src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

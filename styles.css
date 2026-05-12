@@ -113,6 +113,28 @@ body {
 .hero-affiliation {
   font-size: 0.95rem;
   color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.hero-links {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.hero-links a {
+  font-size: 0.88rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.hero-links a:hover {
+  background: var(--accent-light);
 }
 
 /* ===== Sections ===== */
@@ -158,18 +180,21 @@ body {
   border-radius: var(--radius);
   background: var(--bg);
   border: 1px solid var(--border);
-  cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
   position: relative;
   overflow: hidden;
 }
 
-.stat-card:hover {
+.stat-card.clickable {
+  cursor: pointer;
+}
+
+.stat-card.clickable:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
 
-.stat-card:active {
+.stat-card.clickable:active {
   transform: scale(0.97);
 }
 
@@ -197,7 +222,7 @@ body {
   transition: opacity 0.3s;
 }
 
-.stat-card:hover .stat-hint {
+.stat-card.clickable:hover .stat-hint {
   opacity: 1;
 }
 
@@ -275,7 +300,7 @@ body {
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .pub-title {
@@ -285,26 +310,68 @@ body {
   flex: 1;
 }
 
-.pub-title a {
-  color: var(--text);
-  text-decoration: none;
-  transition: color 0.2s;
+.pub-tags {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
 }
 
-.pub-title a:hover {
-  color: var(--accent);
+.pub-type-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: 11px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.pub-type-journal {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.pub-type-conference {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.pub-type-preprint {
+  background: #f3e8ff;
+  color: #6b21a8;
 }
 
 .pub-authors {
   font-size: 0.88rem;
   color: var(--text-secondary);
-  margin-bottom: 10px;
+  margin-bottom: 4px;
+  line-height: 1.6;
 }
 
 .pub-authors .highlight {
-  font-weight: 600;
+  font-weight: 700;
   color: var(--accent);
-  text-decoration: underline;
+}
+
+.pub-venue {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 4px;
+}
+
+.pub-note {
+  color: var(--accent);
+  font-style: normal;
+  font-weight: 500;
+}
+
+.pub-if {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
 }
 
 .pub-meta {
