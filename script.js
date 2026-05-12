@@ -157,50 +157,6 @@ const publications = [
 const pubList = document.getElementById('pub-list');
 const filterBtns = document.querySelectorAll('.filter-btn');
 
-// ===== Counter Animation =====
-function easeOutExpo(t) {
-  return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
-}
-
-function animateCounter(element, target, duration = 1500) {
-  const start = 0;
-  const startTime = performance.now();
-
-  function update(currentTime) {
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    const easedProgress = easeOutExpo(progress);
-    const current = Math.floor(start + (target - start) * easedProgress);
-    element.textContent = current.toLocaleString();
-    if (progress < 1) {
-      requestAnimationFrame(update);
-    } else {
-      element.textContent = target.toLocaleString();
-    }
-  }
-
-  requestAnimationFrame(update);
-}
-
-// Click handler — only for the clickable Publications stat card
-const clickableCard = document.querySelector('.stat-card.clickable');
-if (clickableCard) {
-  clickableCard.addEventListener('click', () => {
-    const numberEl = clickableCard.querySelector('.stat-number');
-    const target = parseInt(clickableCard.getAttribute('data-target'), 10);
-
-    // Add ripple effect
-    const ripple = document.createElement('span');
-    ripple.className = 'ripple';
-    clickableCard.appendChild(ripple);
-    ripple.addEventListener('animationend', () => ripple.remove());
-
-    // Reset and animate from 0
-    numberEl.textContent = '0';
-    animateCounter(numberEl, target);
-  });
-}
-
 // ===== Render Publications =====
 function highlightAuthor(authors) {
   return authors.replace(
