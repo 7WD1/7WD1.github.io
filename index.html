@@ -1,95 +1,401 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wen-Dong Jiang - Homepage</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Wen-Dong Jiang - Academic Homepage" />
+    <meta name="author" content="Wen-Dong Jiang" />
+    <title id="title"></title>
+
+    <!-- Icon -->
+    <link rel="icon" type="image/x-icon" href="static/assets/favicon.ico" />
+
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+
+    <!-- Google fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,600;1,600&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500;1,600;1,700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&display=swap"
+        rel="stylesheet" />
+
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link type="text/css" href="static/css/styles.css" rel="stylesheet" />
+    <link type="text/css" href="static/css/main.css" rel="stylesheet" />
+
+    <!-- Bootstrap core JS-->
+    <script type="text/javascript" src="static/js/bootstrap.bundle.min.js"></script>
+
+    <!-- For Compatability -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+    <!-- Markdown -->
+    <script type="text/javascript" src="static/js/marked.min.js"></script>
+
+    <!-- Mathematics -->
+    <script>
+        MathJax = {
+            tex: {
+                packages: {},
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: false,
+                processEnvironments: true,
+                processRefs: true,
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script"
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Core JS-->
+    <script type="text/javascript" src="static/js/scripts.js"></script>
+    <script type="text/javascript" src="static/js/js-yaml.min.js"></script>
+
 </head>
-<body>
-  <!-- Navigation -->
-  <nav class="nav">
-    <div class="nav-container">
-      <a href="#home" class="nav-logo">Wen-Dong Jiang</a>
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#publications">Publications</a>
-      </div>
-    </div>
-  </nav>
 
-  <!-- Hero Section -->
-  <header id="home" class="hero">
-    <div class="hero-content">
-      <h1 class="hero-name">Wen-Dong Jiang</h1>
-      <p class="hero-title">Interpretable Machine Learning &middot; Smart City &middot; Multimodal Explanation</p>
-      <p class="hero-affiliation">Tamkang University, Taiwan</p>
-      <div class="hero-links">
-        <a href="mailto:verified@ieee.org">Email</a>
-        <a href="https://scholar.google.com/citations?user=poeekH0AAAAJ" target="_blank" rel="noopener">Google Scholar</a>
-        <a href="https://www.researchgate.net/profile/Wen-Dong-Jiang?ev=hdr_xprf" target="_blank" rel="noopener">ResearchGate</a>
-        <a href="https://github.com/7WD1" target="_blank" rel="noopener">GitHub</a>
-      </div>
-    </div>
-  </header>
-
-  <!-- About Section -->
-  <section id="about" class="section">
-    <div class="container">
-      <h2 class="section-title">About</h2>
-      <div class="about-layout">
-        <div class="about-body">
-          <p class="about-text">
-        Wen-Dong Jiang (Graduate Student Member, IEEE) received the B.S. degree in
-        multimedia and game science development from the Lunghwa University of Science
-        and Technology, Taoyuan, Taiwan, in 2021, and the M.S. degree in computer science
-        and information engineering from Ming Chuan University, Taoyuan, in 2023. He
-        received the Ph.D. degree in computer science and information engineering from
-        Tamkang University, New Taipei, Taiwan, in 2026. He has published several research
-        articles in leading journals, including IEEE Trans. Syst., Man, Cybern.: Syst.
-        (TSMCA), IEEE Trans. Intell. Transp. Syst. (TITS), IEEE Trans. Big Data (TBD),
-        IEEE Trans. Emerg. Top. Comput. Intell. (TETCI), Inf. Process. Manag. (IPM), and
-        Expert Syst. Appl. (ESWA). His research interests include
-        interpretable machine learning and its applications in smart cities.
-      </p>
-      <p class="about-text" style="margin-top:16px;">
-        Dr. Jiang was a recipient of the Best Paper Award at WASN 2024 and DLT 2024, as well
-        as the Best Presentation Award at the ICCE-TW 2025 Special Session on Artificial
-        Intelligence Applications and Technologies in the Internet of Things. He also serves
-        as a reviewer for multiple international journals.
-      </p>
+<body id="page-top">
+    <!-- Navigation-->
+    <nav class="header navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
+        <div class="container px-5">
+            <a id="page-top-title" class="navbar-brand fw-bold" href="#page-top"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                MENU
+                <i class="bi-list"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link me-lg-3" href="#home">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-lg-3" href="#awards">AWARDS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-lg-3" href="#publications">PUBLICATIONS</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <aside class="about-photo">
-          <img src="wen-dong jiang.png" alt="Wen-Dong Jiang" class="about-avatar">
-        </aside>
-      </div>
-  </section>
+    </nav>
 
-  <!-- Publications Section -->
-  <section id="publications" class="section">
-    <div class="container">
-      <h2 class="section-title">Publications</h2>
-      <div class="pub-toolbar">
-        <div class="pub-search">
-          <input type="text" id="pub-search-input" placeholder="Search publications...">
+    <!-- Top Section -->
+    <section class="top-section" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);">
+        <div class="top-section-content">
+            <div class="container px-5">
+                <h2 id="top-section-bg-text" class="text-white display-3 lh-1 font-alt"></h2>
+            </div>
         </div>
-        <div class="pub-filters">
-          <button class="filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn" data-filter="journal">Journal</button>
-          <button class="filter-btn" data-filter="conference">Conference</button>
+    </section>
+
+    <!-- Photo -->
+    <div class="container px-5">
+        <div id="avatar">
+            <img class="shadow" src="static/assets/img/photo.png">
         </div>
-      </div>
-      <div class="pub-list" id="pub-list"></div>
     </div>
-  </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>&copy; 2026 Wen-Dong Jiang. All rights reserved.</p>
-  </footer>
+    <!-- Home -->
+    <section class="bg-gradient-primary-to-secondary-light mt5 md5" id="home">
+        <div class="container px-5">
+            <header>
+                <h2 id="home-subtitle"> </h2>
+            </header>
+            <div class="main-body" id="home-md"></div>
+        </div>
+    </section>
 
-  <script src="script.js"></script>
+    <!-- Awards -->
+    <section class="bg-gradient-primary-to-secondary-gray mt5 md5" id="awards">
+        <div class="container px-5">
+            <header>
+                <h2 id="awards-subtitle"><i class="bi bi-award-fill"></i> AWARDS </h2>
+            </header>
+            <div class="main-body" id="awards-md"></div>
+        </div>
+    </section>
+
+    <!-- Publications -->
+    <section class="bg-gradient-primary-to-secondary-light mt5 md5" id="publications">
+        <div class="container px-5">
+            <header>
+                <h2 id="publications-subtitle"><i class="bi bi-file-text-fill"></i>&nbsp;PUBLICATIONS</h2>
+            </header>
+
+            <!-- Publication Toolbar -->
+            <div class="pub-toolbar">
+                <div class="pub-search">
+                    <input type="text" id="pub-search-input" placeholder="Search publications...">
+                </div>
+                <div class="pub-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="journal">Journal</button>
+                    <button class="filter-btn" data-filter="conference">Conference</button>
+                </div>
+            </div>
+            <div class="pub-list" id="pub-list"></div>
+        </div>
+    </section>
+
+    <!-- Footer-->
+    <footer class="bg-bottom text-center py-5">
+        <div class="container px-5">
+            <div class="text-white-50 small">
+                <div id="copyright-text" class="mb-2"></div>
+                <a id="github-link" href="https://github.com/7WD1">Github</a>
+                <span class="mx-1">&middot;</span>
+                <a href="https://scholar.google.com/citations?user=poeekH0AAAAJ">Google Scholar</a>
+                <span class="mx-1">&middot;</span>
+                <a href="https://www.researchgate.net/profile/Wen-Dong-Jiang?ev=hdr_xprf">ResearchGate</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Publication rendering script -->
+    <script>
+    const publications = [
+      {
+        type: 'journal',
+        authors: 'W.-D. Jiang, Y.-T. Chin, T.-C. Huang, S.-J. Jhang, and C.-Y. Chang',
+        title: 'EnEXPV1.5: A Parallel Tree-Based Framework for Fast Interpretable Matrix Operations',
+        venue: 'Int. J. Design, Anal. Tools Integr. Circuits Syst.',
+        vol: '13', no: '12', pages: 'pp. 24–30',
+        year: 2024, month: 'Dec.',
+        jcr: null,
+        doi: 'https://doi.org/10.13140/RG.2.2.22180.85127',
+      },
+      {
+        type: 'journal',
+        authors: 'Y.-S. Lee, S.-J. Yen, W.-D. Jiang, J. Chen, and C.-Y. Chang',
+        title: 'Illuminating the Black Box: An Interpretable Machine Learning Based on Ensemble Trees',
+        venue: 'Expert Syst. Appl.',
+        vol: '272',
+        year: 2025, month: 'May',
+        jcr: 'Q1', if: '7.5',
+        doi: 'https://doi.org/10.1016/j.eswa.2025.126720',
+      },
+      {
+        type: 'journal',
+        authors: 'W.-D. Jiang, C.-Y. Chang, S.-J. Yen, S.-J. Wu, and D. Sinha Roy',
+        title: 'RealExp: Decoupling Correlation Bias in Shapley Values for Faithful Model Interpretations',
+        venue: 'Inf. Process. Manag.',
+        vol: '62', no: '4',
+        year: 2025, month: 'Jul.',
+        jcr: 'Q1', if: '7.5',
+        doi: 'https://doi.org/10.1016/j.ipm.2025.104153',
+      },
+      {
+        type: 'journal',
+        authors: 'W.-D. Jiang, C.-Y. Chang, M.-Y. Su, Y.-S. Lee, and D. Sinha Roy',
+        title: 'Toward Interpretable Multimodal Violence Detection With Knowledge Distillation and Modality-Aligned Preprocessing',
+        venue: 'IEEE Trans. Syst., Man, Cybern., Syst.',
+        vol: '55', no: '9', pages: 'pp. 6215–6228',
+        year: 2025, month: 'Sep.',
+        jcr: 'Q1', if: '8.6',
+        doi: 'https://doi.org/10.1109/TSMC.2025.3576390',
+      },
+      {
+        type: 'journal',
+        authors: 'W.-D. Jiang, Y.-T. Chin, Y.-T. Yang, C.-Y. Chang, and D. Sinha Roy',
+        title: 'Detection, Retrieval, and Explanation Unified: A Violence Detection System Based on Knowledge Graphs and GAT',
+        venue: 'IEEE Trans. Syst., Man, Cybern., Syst.',
+        vol: '56', no: '4', pages: 'pp. 2827–2841',
+        year: 2026, month: 'Apr.',
+        jcr: 'Q1', if: '8.6',
+        doi: 'https://doi.org/10.1109/TSMC.2026.3653874',
+      },
+      {
+        type: 'journal',
+        authors: 'C.-Y. Chang, W.-D. Jiang, I.-H. Chang, and D. Sinha Roy',
+        title: 'Not Only Detection But Also Explain: An Interpretable Multimodal System for Anomaly Detection',
+        venue: 'IEEE Trans. Emerg. Top. Comput. Intell.',
+        vol: '10', no: '2', pages: 'pp. 1863–1877',
+        year: 2026, month: 'Apr.',
+        jcr: 'Q1', if: '6.6',
+        doi: 'https://doi.org/10.1109/TETCI.2026.3654456',
+      },
+      {
+        type: 'journal',
+        authors: 'W.-D. Jiang, C.-Y. Chang, T.-C. Huang, Y.-T. Chin, and D. Sinha Roy',
+        title: 'PEXP: A Scalable Parallel Tree-Based Framework for Interpreting Models on Big Data',
+        venue: 'IEEE Trans. Big Data',
+        year: 2026,
+        jcr: 'Q1', if: '5.7',
+        note: 'to appear',
+        doi: 'https://doi.org/10.1109/TBDATA.2026.3668673',
+      },
+      {
+        type: 'journal',
+        authors: 'W.-D. Jiang, C.-Y. Chang, T.-C. Huang, Y.-S. Lee, and D. Sinha Roy',
+        title: 'An Explainable KAN-Shapley Framework for Many-to-Many Electric Vehicle Charging Dispatch in Intelligent Transportation Systems',
+        venue: 'IEEE Trans. Intell. Transp. Syst.',
+        year: 2026,
+        jcr: 'Q1', if: '8.5',
+        note: 'to appear',
+        doi: 'https://doi.org/10.1109/TITS.2026.3688187',
+      },
+      {
+        type: 'conference',
+        authors: 'Y.-T. Chin, W.-D. Jiang, H.-C. Chang, and W.-H. Liao',
+        title: 'LFP: A Stable and Efficient Local Interpretation Method for Deep Neural Networks',
+        venue: 'Proc. IEEE Int. Conf. Consum. Electron. Taiwan (ICCE-TW)',
+        year: 2025, month: 'Jul.',
+        note: 'EI, Best Presentation Award',
+        jcr: null, doi: null,
+      },
+      {
+        type: 'conference',
+        authors: 'W.-D. Jiang, Y.-S. Lee, and S.-J. Yen',
+        title: 'Revaluating Explanatory Ability and Model Adjustability of Explainable Machine Learning',
+        venue: 'Proc. Symp. Digit. Life Technol. (DLT)',
+        pages: 'pp. 562–567',
+        year: 2024, month: 'May',
+        note: 'Best Paper Award',
+        jcr: null, doi: null,
+      },
+      {
+        type: 'conference',
+        authors: 'W.-D. Jiang, Y.-S. Lee, and S.-J. Yen',
+        title: 'The Study of Explainable Machine Learning Research on Attribute Selection',
+        venue: 'Proc. Symp. Digit. Life Technol. (DLT)',
+        year: 2023, month: 'May',
+        jcr: null, doi: null,
+      },
+      {
+        type: 'conference',
+        authors: 'W.-D. Jiang and C.-C. Chang',
+        title: 'An Intriguing Two-Stage System for Efficient Weakly Supervised Anomaly Detection',
+        venue: 'Proc. Workshop Wireless Ad Hoc Sensor Netw. (WASN)',
+        year: 2024, month: 'Aug.',
+        note: 'Best Paper Award',
+        jcr: null, doi: null,
+      },
+      {
+        type: 'conference',
+        authors: 'W.-D. Jiang, C.-C. Chang, and T.-C. Huang',
+        title: 'Toward Interpretable Multimodal Violence Detection with Knowledge Distillation and Modality-Aligned Preprocessing',
+        venue: 'Proc. Workshop Wireless Ad Hoc Sensor Netw. (WASN)',
+        year: 2025, month: 'Aug.',
+        jcr: null, doi: null,
+      },
+      {
+        type: 'conference',
+        authors: 'T.-C. Huang, W.-D. Jiang, S.-J. Jhang, Z.-A. Zhong, and C.-Y. Chang',
+        title: 'A Domain-Aware Hierarchical Refinement Framework for Event Boundary Localization in Long-Form Sports Videos',
+        venue: 'Proc. IEEE Int. Conf. Appl. Syst. Innov. (ICASI)',
+        year: 2026, month: 'Apr.',
+        note: 'EI',
+        jcr: null, doi: null,
+      },
+    ];
+
+    function highlightAuthor(authors) {
+      return authors.replace(
+        /(W\.\s*-?\s*D\.\s*Jiang|W\.-D\.\s*Jiang|W.-D\. Jiang)/g,
+        '<span class="pub-highlight">$1</span>'
+      );
+    }
+
+    function buildPubMeta(pub) {
+      const parts = [];
+      if (pub.vol) parts.push('vol. ' + pub.vol);
+      if (pub.no) parts.push('no. ' + pub.no);
+      if (pub.pages) parts.push('pp. ' + pub.pages);
+      return parts.join(', ');
+    }
+
+    function buildPubDate(pub) {
+      return [pub.month, pub.year].filter(Boolean).join(' ');
+    }
+
+    function createPubCard(pub) {
+      let jcrTagHtml = '';
+      if (pub.jcr === 'Q1') {
+        jcrTagHtml = '<span class="jcr-tag jcr-q1-shimmer">JCR Q1</span>';
+      }
+
+      const metaDetail = buildPubMeta(pub);
+      const dateStr = buildPubDate(pub);
+
+      let linksHtml = '';
+      if (pub.doi) {
+        linksHtml += '<a href="' + pub.doi + '" class="pub-link" target="_blank" rel="noopener">Paper Link</a>';
+      }
+      if (pub.arxiv) {
+        linksHtml += '<a href="https://arxiv.org/abs/' + pub.arxiv + '" class="pub-link" target="_blank" rel="noopener">arXiv:' + pub.arxiv + '</a>';
+      }
+
+      const typeLabel = { journal: 'Journal', conference: 'Conference' }[pub.type] || '';
+
+      const titleHtml = pub.doi
+        ? '<a href="' + pub.doi + '" class="pub-title-link" target="_blank" rel="noopener">' + pub.title + '</a>'
+        : pub.title;
+
+      return '<div class="pub-card" data-type="' + pub.type + '" data-jcr="' + (pub.jcr || '') + '">' +
+        '<div class="pub-card-header">' +
+          '<div class="pub-title">' + titleHtml + '</div>' +
+          '<div class="pub-tags">' +
+            '<span class="pub-type-tag pub-type-' + pub.type + '">' + typeLabel + '</span>' +
+            jcrTagHtml +
+          '</div>' +
+        '</div>' +
+        '<div class="pub-authors">' + highlightAuthor(pub.authors) + '</div>' +
+        '<div class="pub-venue">' + pub.venue + (metaDetail ? ', ' + metaDetail : '') + ', ' + dateStr + (pub.note ? ' <span class="pub-note">(' + pub.note + ')</span>' : '') + '</div>' +
+        (pub.if ? '<div class="pub-if">SCI Impact Factor: ' + pub.if + '</div>' : '') +
+        (linksHtml ? '<div class="pub-links">' + linksHtml + '</div>' : '') +
+      '</div>';
+    }
+
+    // Render publications after DOM loads
+    document.addEventListener('DOMContentLoaded', function() {
+      const pubList = document.getElementById('pub-list');
+      if (pubList) {
+        pubList.innerHTML = publications.map(createPubCard).join('');
+      }
+
+      // Search
+      const searchInput = document.getElementById('pub-search-input');
+      let currentFilter = 'all';
+      let searchQuery = '';
+
+      function applyFilters() {
+        const cards = pubList.querySelectorAll('.pub-card');
+        cards.forEach(function(card) {
+          const type = card.getAttribute('data-type');
+          const cardText = card.textContent.toLowerCase();
+          let showByType = currentFilter === 'all' || type === currentFilter;
+          let showBySearch = !searchQuery || cardText.includes(searchQuery.toLowerCase());
+          card.style.display = (showByType && showBySearch) ? '' : 'none';
+        });
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener('input', function() {
+          searchQuery = searchInput.value.trim();
+          applyFilters();
+        });
+      }
+
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      filterBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          filterBtns.forEach(function(b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          currentFilter = btn.getAttribute('data-filter');
+          applyFilters();
+        });
+      });
+    });
+    </script>
+
 </body>
+
 </html>

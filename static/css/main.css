@@ -1,0 +1,339 @@
+@import "./styles.css";
+
+
+:root{
+    --h-title-color:#3948d2;
+}
+
+.header {
+    border-bottom: solid 2px var(--bs-blue);
+    z-index: 10000;
+}
+
+.bg-bottom {
+    background-color: var(--h-title-color);
+}
+
+.top-section {
+    position: relative;
+    padding: 10rem 0;
+    background-position: center;
+    background-size: cover;
+    height: 25rem;
+}
+
+.top-section h2 {
+    font-weight: 400;
+}
+
+.top-section .top-section-content {
+    position: relative;
+    z-index: 1;
+}
+
+.top-section:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+section header h2{
+    font-family: "Kanit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+    color: var(--h-title-color);
+    font-size: 2.3rem;
+    line-height: 4rem;
+}
+
+section .main-body{
+    font-size: 1.3rem;
+    font-weight: 200;
+    line-height: 2.4rem;
+}
+
+
+.bg-gradient-primary-to-secondary-light {
+    background: linear-gradient(45deg, #fcfcfc, #ffffff) !important;
+}
+
+.bg-gradient-primary-to-secondary-gray {
+    background: linear-gradient(45deg, #f0f0f0, #f1f1f1) !important;
+}
+
+
+
+.on-top {
+    position: relative;
+    z-index: 10000;
+}
+
+.top-bg {
+    background-position: center;
+    background-size: fill;
+    width: 100%;
+    height: 100%;
+}
+
+.top-bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+
+#avatar {
+    position: relative;
+    height: 0;
+    top:min(-65px,max(-100px,calc(-1*100vw/12)));
+    max-width: 55em;
+    margin: 0 1.5rem 0 0;
+    float: right;
+    z-index: 9000;
+}
+
+#avatar img {
+    height: max(130px,min(200px,calc(100vw/6)));
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (max-width: 991px) {
+    #avatar {
+        margin: 0;
+    }
+}
+
+/* ===== Publication Toolbar ===== */
+.pub-toolbar {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 28px;
+}
+
+.pub-search input {
+    width: 100%;
+    padding: 10px 16px;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    color: #212529;
+    background: #fff;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.pub-search input::placeholder {
+    color: #888;
+}
+
+.pub-search input:focus {
+    border-color: #3948d2;
+    box-shadow: 0 0 0 3px rgba(57, 72, 210, 0.1);
+}
+
+.pub-filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 7px 18px;
+    border: 1px solid #dee2e6;
+    border-radius: 20px;
+    background: #fff;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    color: #495057;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.filter-btn:hover {
+    border-color: #3948d2;
+    color: #3948d2;
+}
+
+.filter-btn.active {
+    background: #3948d2;
+    color: #fff;
+    border-color: #3948d2;
+}
+
+/* ===== Publication Cards ===== */
+.pub-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.pub-card {
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    padding: 24px;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.pub-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    transform: translateY(-1px);
+}
+
+.pub-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.pub-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.5;
+    flex: 1;
+}
+
+.pub-title-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.pub-title-link:hover {
+    color: #3948d2;
+    text-decoration: underline;
+}
+
+.pub-tags {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.pub-type-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 10px;
+    border-radius: 11px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+.pub-type-journal {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.pub-type-conference {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.pub-authors {
+    font-size: 0.88rem;
+    color: #495057;
+    margin-bottom: 4px;
+    line-height: 1.6;
+}
+
+.pub-highlight {
+    font-weight: 700;
+    color: #3948d2;
+}
+
+.pub-venue {
+    font-size: 0.85rem;
+    color: #6c757d;
+    font-style: italic;
+    margin-bottom: 4px;
+}
+
+.pub-note {
+    color: #3948d2;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.pub-if {
+    font-size: 0.78rem;
+    color: #6c757d;
+    margin-bottom: 4px;
+}
+
+.pub-links {
+    margin-top: 12px;
+    display: flex;
+    gap: 12px;
+}
+
+.pub-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.83rem;
+    font-weight: 500;
+    color: #3948d2;
+    text-decoration: none;
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: #dbeafe;
+    transition: background 0.2s;
+}
+
+.pub-link:hover {
+    background: #bfdbfe;
+}
+
+/* ===== JCR Q1 Shimmer Rainbow Tag ===== */
+.jcr-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 12px;
+    border-radius: 14px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.jcr-q1-shimmer {
+    background: linear-gradient(
+        135deg,
+        #ff006e 0%, #ff4da6 14%, #ff8700 28%,
+        #ffbe0b 42%, #00b4d8 57%, #3a86ff 71%,
+        #8338ec 85%, #ff006e 100%
+    );
+    background-size: 400% 400%;
+    color: #fff;
+    animation: shimmer-rainbow 2.5s ease-in-out infinite;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    box-shadow: 0 0 14px rgba(255, 0, 110, 0.3), 0 0 28px rgba(58, 134, 255, 0.2);
+}
+
+@keyframes shimmer-rainbow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ===== Responsive publication cards ===== */
+@media screen and (max-width: 768px) {
+    .pub-card-header {
+        flex-direction: column;
+    }
+}
