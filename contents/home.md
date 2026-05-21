@@ -7,8 +7,6 @@ Wen-Dong Jiang (Graduate Student Member, IEEE) received the B.S. degree in multi
 
 He has published several research articles in leading journals, including IEEE Trans. Syst., Man, Cybern.: Syst. (TSMCA), IEEE Trans. Intell. Transp. Syst. (TITS), IEEE Trans. Big Data (TBD), IEEE Trans. Emerg. Top. Comput. Intell. (TETCI), Inf. Process. Manag. (IPM), and Expert Syst. Appl. (ESWA). His research interests include interpretable machine learning and its applications in smart cities.
 
-Dr. Jiang was a recipient of the Best Paper Award at WASN 2024 and DLT 2024, as well as the Best Presentation Award at the ICCE-TW 2025 Special Session on Artificial Intelligence Applications and Technologies in the Internet of Things. He also serves as a reviewer for multiple international journals.
-
 #### Education
 **Tamkang University**, Ph.D. in Computer Science and Information Engineering (2023 – 2026)
 
