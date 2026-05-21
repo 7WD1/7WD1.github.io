@@ -10,9 +10,11 @@ He has published several research articles in leading journals, including IEEE T
 #### Education
 **Tamkang University**, Ph.D. in Computer Science and Information Engineering (2023 – 2026)
 
-**Ming Chuan University**, M.S. in Computer Science and Information Engineering (2021 – 2023) — Thesis: [一個基於LIME的新可解釋機器學習及其評估方法之研究 (The Research of a New LIME-based Method for Interpretable Machine Learning and its Evaluation Methods)](https://ndltd.ncl.edu.tw/cgi-bin/gs32/gsweb.cgi/login?o=dnclcdr&s=id=%22111MCU00392008%22.&searchmode=basic)
+**Ming Chuan University**, M.S. in Computer Science and Information Engineering (2021 – 2023)
+- Thesis: [一個基於LIME的新可解釋機器學習及其評估方法之研究 (The Research of a New LIME-based Method for Interpretable Machine Learning and its Evaluation Methods)](https://ndltd.ncl.edu.tw/cgi-bin/gs32/gsweb.cgi/login?o=dnclcdr&s=id=%22111MCU00392008%22.&searchmode=basic)
 
-**Lunghwa University of Science and Technology**, B.S. in Multimedia and Game Science Development (2017 – 2021) — Thesis: [水管英雄：為漸凍症患者設計的眼動追蹤遊戲 (Pipe Hero: An Eye-Tracking Game Designed for ALS Patients)](https://www.youtube.com/watch?v=chWE9t0sKaE&t=1s)
+**Lunghwa University of Science and Technology**, B.S. in Multimedia and Game Science Development (2017 – 2021)
+- Thesis: [水管英雄：為漸凍症患者設計的眼動追蹤遊戲 (Pipe Hero: An Eye-Tracking Game Designed for ALS Patients)](https://www.youtube.com/watch?v=chWE9t0sKaE&t=1s)
 
 #### Research Interests
 Interpretable Machine Learning, Smart City, Multimodal Explanation, Anomaly Detection, Violence Detection, Explainable AI.
