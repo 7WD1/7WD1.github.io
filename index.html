@@ -171,6 +171,7 @@
         year: 2024, month: 'Dec.',
         jcr: null,
         doi: 'https://doi.org/10.13140/RG.2.2.22180.85127',
+        cover: 'static/assets/img/ijdatics.jpg',
       },
       {
         type: 'journal',
@@ -181,6 +182,7 @@
         year: 2025, month: 'May',
         jcr: 'Q1', if: '7.5',
         doi: 'https://doi.org/10.1016/j.eswa.2025.126720',
+        cover: 'static/assets/img/eswa.jpg',
       },
       {
         type: 'journal',
@@ -191,6 +193,7 @@
         year: 2025, month: 'Jul.',
         jcr: 'Q1', if: '7.5',
         doi: 'https://doi.org/10.1016/j.ipm.2025.104153',
+        cover: 'static/assets/img/ipm.jpg',
       },
       {
         type: 'journal',
@@ -201,6 +204,7 @@
         year: 2025, month: 'Sep.',
         jcr: 'Q1', if: '8.6',
         doi: 'https://doi.org/10.1109/TSMC.2025.3576390',
+        cover: 'static/assets/img/tsmc.jpg',
       },
       {
         type: 'journal',
@@ -211,6 +215,7 @@
         year: 2026, month: 'Apr.',
         jcr: 'Q1', if: '8.6',
         doi: 'https://doi.org/10.1109/TSMC.2026.3653874',
+        cover: 'static/assets/img/tsmc.jpg',
       },
       {
         type: 'journal',
@@ -221,6 +226,7 @@
         year: 2026, month: 'Apr.',
         jcr: 'Q1', if: '6.6',
         doi: 'https://doi.org/10.1109/TETCI.2026.3654456',
+        cover: 'static/assets/img/tetci.jpg',
       },
       {
         type: 'journal',
@@ -231,6 +237,7 @@
         jcr: 'Q1', if: '5.7',
         note: 'to appear',
         doi: 'https://doi.org/10.1109/TBDATA.2026.3668673',
+        cover: 'static/assets/img/tbd.jpg',
       },
       {
         type: 'journal',
@@ -241,6 +248,7 @@
         jcr: 'Q1', if: '8.5',
         note: 'to appear',
         doi: 'https://doi.org/10.1109/TITS.2026.3688187',
+        cover: 'static/assets/img/tits.jpg',
       },
       {
         type: 'conference',
@@ -339,18 +347,25 @@
         ? '<a href="' + pub.doi + '" class="pub-title-link" target="_blank" rel="noopener">' + pub.title + '</a>'
         : pub.title;
 
+      const coverHtml = pub.cover
+        ? '<div class="pub-cover"><img src="' + pub.cover + '" alt="' + pub.venue + '"></div>'
+        : '';
+
       return '<div class="pub-card" data-type="' + pub.type + '" data-jcr="' + (pub.jcr || '') + '">' +
-        '<div class="pub-card-header">' +
-          '<div class="pub-title">' + titleHtml + '</div>' +
-          '<div class="pub-tags">' +
-            '<span class="pub-type-tag pub-type-' + pub.type + '">' + typeLabel + '</span>' +
-            jcrTagHtml +
+        coverHtml +
+        '<div class="pub-body">' +
+          '<div class="pub-card-header">' +
+            '<div class="pub-title">' + titleHtml + '</div>' +
+            '<div class="pub-tags">' +
+              '<span class="pub-type-tag pub-type-' + pub.type + '">' + typeLabel + '</span>' +
+              jcrTagHtml +
+            '</div>' +
           '</div>' +
+          '<div class="pub-authors">' + highlightAuthor(pub.authors) + '</div>' +
+          '<div class="pub-venue">' + pub.venue + (metaDetail ? ', ' + metaDetail : '') + ', ' + dateStr + (pub.note ? ' <span class="pub-note">(' + pub.note + ')</span>' : '') + '</div>' +
+          (pub.if ? '<div class="pub-if">SCI Impact Factor: ' + pub.if + '</div>' : '') +
+          (linksHtml ? '<div class="pub-links">' + linksHtml + '</div>' : '') +
         '</div>' +
-        '<div class="pub-authors">' + highlightAuthor(pub.authors) + '</div>' +
-        '<div class="pub-venue">' + pub.venue + (metaDetail ? ', ' + metaDetail : '') + ', ' + dateStr + (pub.note ? ' <span class="pub-note">(' + pub.note + ')</span>' : '') + '</div>' +
-        (pub.if ? '<div class="pub-if">SCI Impact Factor: ' + pub.if + '</div>' : '') +
-        (linksHtml ? '<div class="pub-links">' + linksHtml + '</div>' : '') +
       '</div>';
     }
 
