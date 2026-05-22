@@ -383,13 +383,19 @@
     }
 
     function animateCounter(el, target, duration) {
-      const start = performance.now();
+      var start = performance.now();
+      var totalFrames = target;
+      var frameInterval = duration / totalFrames;
+      var current = 0;
       function tick(now) {
-        const elapsed = now - start;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        el.textContent = Math.round(eased * target);
-        if (progress < 1) requestAnimationFrame(tick);
+        var elapsed = now - start;
+        current = Math.min(Math.floor(elapsed / frameInterval), target);
+        el.textContent = current;
+        if (current < target) {
+          setTimeout(function() { requestAnimationFrame(tick); }, 80);
+        } else {
+          el.textContent = target;
+        }
       }
       requestAnimationFrame(tick);
     }
@@ -404,7 +410,7 @@
             cards.forEach(function(c) { c.classList.add('visible'); });
             numbers.forEach(function(n) {
               const target = parseInt(n.getAttribute('data-target'), 10);
-              animateCounter(n, target, 1200);
+              animateCounter(n, target, 3000);
             });
             observer.disconnect();
           }
