@@ -351,6 +351,29 @@ section .main-body{
     100% { background-position: 0% 50%; }
 }
 
+/* ===== Language Toggle ===== */
+#lang-toggle {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 12px;
+    padding: 2px 14px;
+    border: 2px solid var(--h-title-color);
+    border-radius: 20px;
+    background: transparent;
+    color: var(--h-title-color);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    line-height: 1.6;
+}
+
+#lang-toggle:hover {
+    background: var(--h-title-color);
+    color: #fff;
+}
+
 /* ===== Responsive publication cards ===== */
 @media screen and (max-width: 768px) {
     .pub-card-header {

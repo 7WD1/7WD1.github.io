@@ -2,6 +2,7 @@ const content_dir = 'contents/'
 const config_file = 'config.yml'
 const section_names = ['home', 'awards'];
 
+const homeContent = { en: '', zh: '' };
 
 window.addEventListener('DOMContentLoaded', event => {
 
@@ -47,7 +48,43 @@ window.addEventListener('DOMContentLoaded', event => {
 
     // Marked
     marked.use({ mangle: false, headerIds: false })
-    section_names.forEach((name, idx) => {
+
+    // Load both English and Chinese home content, then apply saved language
+    const savedLang = localStorage.getItem('lang') || 'en';
+
+    Promise.all([
+        fetch(content_dir + 'home.md').then(r => r.text()).then(md => { homeContent.en = marked.parse(md); }),
+        fetch(content_dir + 'home-zh.md').then(r => r.text()).then(md => { homeContent.zh = marked.parse(md); })
+    ]).then(() => {
+        applyLang(savedLang);
+    }).catch(error => console.log(error));
+
+    // Language toggle
+    const langBtn = document.getElementById('lang-toggle');
+    if (langBtn) {
+        langBtn.addEventListener('click', function () {
+            const current = localStorage.getItem('lang') || 'en';
+            const next = current === 'en' ? 'zh' : 'en';
+            applyLang(next);
+            localStorage.setItem('lang', next);
+        });
+    }
+
+    function applyLang(lang) {
+        const el = document.getElementById('home-md');
+        if (el && homeContent[lang]) {
+            el.innerHTML = homeContent[lang];
+            MathJax.typeset();
+        }
+        const btn = document.getElementById('lang-toggle');
+        if (btn) {
+            btn.textContent = lang === 'en' ? '中文' : 'EN';
+        }
+        localStorage.setItem('lang', lang);
+    }
+
+    // Load non-home sections
+    section_names.filter(n => n !== 'home').forEach((name, idx) => {
         fetch(content_dir + name + '.md')
             .then(response => response.text())
             .then(markdown => {
