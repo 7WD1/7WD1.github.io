@@ -78,7 +78,7 @@ window.addEventListener('DOMContentLoaded', event => {
         }
         const btn = document.getElementById('lang-toggle');
         if (btn) {
-            btn.textContent = lang === 'en' ? '中文' : 'EN';
+            btn.textContent = lang === 'en' ? '中文' : 'Eng';
         }
         localStorage.setItem('lang', lang);
     }

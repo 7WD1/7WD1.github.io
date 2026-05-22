@@ -354,9 +354,7 @@ section .main-body{
 /* ===== Language Toggle ===== */
 #lang-toggle {
     display: inline-block;
-    vertical-align: middle;
-    margin-left: 12px;
-    padding: 2px 14px;
+    padding: 4px 16px;
     border: 2px solid var(--h-title-color);
     border-radius: 20px;
     background: transparent;
@@ -366,7 +364,7 @@ section .main-body{
     cursor: pointer;
     transition: all 0.2s;
     font-family: inherit;
-    line-height: 1.6;
+    margin-bottom: 10px;
 }
 
 #lang-toggle:hover {
