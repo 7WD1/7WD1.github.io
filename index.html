@@ -118,6 +118,31 @@
                 <h2 id="publications-subtitle"><i class="bi bi-file-text-fill"></i>&nbsp;PUBLICATIONS</h2>
             </header>
 
+            <!-- Publication Stats -->
+            <div class="pub-stats-bar" id="pub-stats-bar">
+                <div class="pub-stat-card">
+                    <div class="pub-stat-icon"><i class="bi bi-journal-text"></i></div>
+                    <div class="pub-stat-content">
+                        <div class="pub-stat-number" data-target="15">0</div>
+                        <div class="pub-stat-label">Total Publications</div>
+                    </div>
+                </div>
+                <div class="pub-stat-card">
+                    <div class="pub-stat-icon pub-stat-icon-q1"><i class="bi bi-award"></i></div>
+                    <div class="pub-stat-content">
+                        <div class="pub-stat-number" data-target="7">0</div>
+                        <div class="pub-stat-label">JCR Q1 Journals</div>
+                    </div>
+                </div>
+                <div class="pub-stat-card">
+                    <div class="pub-stat-icon pub-stat-icon-trans"><i class="bi bi-cpu"></i></div>
+                    <div class="pub-stat-content">
+                        <div class="pub-stat-number" data-target="5">0</div>
+                        <div class="pub-stat-label">IEEE/ACM Trans.</div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Publication Toolbar -->
             <div class="pub-toolbar">
                 <div class="pub-search">
@@ -357,12 +382,47 @@
       '</div>';
     }
 
+    function animateCounter(el, target, duration) {
+      const start = performance.now();
+      function tick(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target);
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    function initStatAnimations() {
+      const cards = document.querySelectorAll('.pub-stat-card');
+      const numbers = document.querySelectorAll('.pub-stat-number');
+
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            cards.forEach(function(c) { c.classList.add('visible'); });
+            numbers.forEach(function(n) {
+              const target = parseInt(n.getAttribute('data-target'), 10);
+              animateCounter(n, target, 1200);
+            });
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.3 });
+
+      const statsBar = document.getElementById('pub-stats-bar');
+      if (statsBar) observer.observe(statsBar);
+    }
+
     // Render publications after DOM loads
     document.addEventListener('DOMContentLoaded', function() {
       const pubList = document.getElementById('pub-list');
       if (pubList) {
         pubList.innerHTML = publications.map(createPubCard).join('');
       }
+
+      initStatAnimations();
 
       // Search
       const searchInput = document.getElementById('pub-search-input');
