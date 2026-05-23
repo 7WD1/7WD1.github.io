@@ -59,6 +59,8 @@
 <body id="page-top" class="no-js">
     <!-- Snowfall -->
     <div id="snow-container" aria-hidden="true"></div>
+    <!-- Crabs -->
+    <div id="crab-container" aria-hidden="true"></div>
     <script>document.body.classList.remove('no-js');</script>
     <!-- Navigation-->
     <nav class="header navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
@@ -890,6 +892,25 @@
             var dur = isMobile ? (4 + Math.random() * 8) : (6 + Math.random() * 10);
             el.style.animationDuration = dur + 's';
             el.style.animationDelay = Math.random() * dur + 's';
+            container.appendChild(el);
+        }
+    })();
+
+    // Crab Animation
+    (function() {
+        var container = document.getElementById('crab-container');
+        if (!container) return;
+        var crabCount = window.innerWidth < 768 ? 2 : 3;
+        for (var i = 0; i < crabCount; i++) {
+            var el = document.createElement('span');
+            el.className = 'crab' + (i % 2 === 1 ? ' backward' : '');
+            el.textContent = '🦀';
+            el.style.bottom = (Math.random() * 8) + 'px';
+            el.style.fontSize = (1 + Math.random() * 0.6) + 'em';
+            var dur = 12 + Math.random() * 18;
+            el.style.animationDuration = dur + 's';
+            el.style.animationDelay = Math.random() * dur + 's';
+            el.style.opacity = 0.7 + Math.random() * 0.3;
             container.appendChild(el);
         }
     })();
