@@ -18,3 +18,4 @@ His research interests focus on interpretable machine learning and explainable a
 
 #### Research Interests
 Interpretable Machine Learning, Smart City, Multimodal Explanation, Anomaly Detection, Violence Detection, Explainable AI.
+
