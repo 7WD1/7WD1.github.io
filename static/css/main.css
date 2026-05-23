@@ -22,6 +22,32 @@
     height: auto;
 }
 
+@media screen and (max-width: 768px) {
+    .top-section {
+        padding: 4rem 0;
+        min-height: 12rem;
+    }
+
+    section header h2 {
+        font-size: 1.6rem;
+        line-height: 2.2rem;
+    }
+
+    section .main-body {
+        font-size: 1.1rem;
+        line-height: 1.9rem;
+    }
+
+    .vlog-modal-overlay {
+        overscroll-behavior: contain;
+    }
+
+    .vlog-modal-body {
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-y: contain;
+    }
+}
+
 .top-section h2 {
     font-weight: 400;
 }
@@ -516,21 +542,26 @@ section .main-body{
     user-select: none;
     opacity: 0.8;
     animation: snowfall linear infinite;
+    will-change: transform, opacity;
+    -webkit-backface-visibility: hidden;
 }
 
 @keyframes snowfall {
     0% {
-        transform: translateY(-10px) rotate(0deg);
+        transform: translateY(-10px) translateX(0) rotate(0deg);
         opacity: 0;
     }
     10% {
         opacity: 0.8;
     }
+    50% {
+        transform: translateY(50vh) translateX(12px) rotate(180deg);
+    }
     90% {
         opacity: 0.6;
     }
     100% {
-        transform: translateY(100vh) rotate(360deg);
+        transform: translateY(100vh) translateX(-6px) rotate(360deg);
         opacity: 0;
     }
 }
@@ -544,7 +575,7 @@ section .main-body{
 /* ===== Demo Section ===== */
 .demo-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
     gap: 24px;
     margin-top: 8px;
 }
@@ -928,5 +959,88 @@ section .main-body{
     .vlog-modal-body {
         padding: 18px;
         font-size: 0.95rem;
+        line-height: 1.7;
+    }
+
+    .vlog-modal-close {
+        width: 44px;
+        height: 44px;
+    }
+
+    .vlog-lang-toggle {
+        padding: 10px 16px;
+    }
+
+    .vlog-modal-overlay {
+        padding: 16px 8px;
+    }
+
+    #lang-toggle {
+        padding: 10px 20px;
+    }
+
+    .filter-btn {
+        padding: 12px 20px;
+    }
+
+    .pub-link {
+        padding: 10px 16px;
+    }
+}
+
+/* ===== Extra-small mobile (<=480px) ===== */
+@media screen and (max-width: 480px) {
+    .container.px-5 {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    #avatar {
+        float: none;
+        margin: 0 auto;
+        text-align: center;
+        top: -30px;
+    }
+
+    #avatar img {
+        height: 120px;
+    }
+
+    .pub-stat-card {
+        min-width: 100%;
+        padding: 12px;
+    }
+
+    .pub-stats-bar {
+        flex-direction: column;
+    }
+
+    .pub-card {
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .pub-cover img {
+        width: 60px;
+    }
+
+    .vlog-card {
+        padding: 14px 16px;
+        gap: 12px;
+    }
+
+    .vlog-card-title {
+        font-size: 0.95rem;
+    }
+
+    .vlog-modal-header {
+        flex-wrap: wrap;
+    }
+
+    .vlog-modal-controls {
+        width: 100%;
+        justify-content: flex-end;
+        margin-top: 8px;
     }
 }

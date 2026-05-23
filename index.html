@@ -876,7 +876,10 @@
         var container = document.getElementById('snow-container');
         if (!container) return;
         var flakes = ['❄','❅','❆'];
-        var count = Math.min(50, Math.floor(window.innerWidth / 25));
+        var isMobile = window.innerWidth < 768;
+        var maxCount = isMobile ? 20 : 50;
+        var count = Math.min(maxCount, Math.floor(window.innerWidth / 25));
+        if (isMobile && count < 10) count = 10;
         for (var i = 0; i < count; i++) {
             var el = document.createElement('span');
             el.className = 'snowflake';
@@ -884,7 +887,7 @@
             el.style.left = Math.random() * 100 + '%';
             el.style.fontSize = (0.6 + Math.random() * 1.2) + 'em';
             el.style.opacity = 0.3 + Math.random() * 0.5;
-            var dur = 6 + Math.random() * 10;
+            var dur = isMobile ? (4 + Math.random() * 8) : (6 + Math.random() * 10);
             el.style.animationDuration = dur + 's';
             el.style.animationDelay = Math.random() * dur + 's';
             container.appendChild(el);

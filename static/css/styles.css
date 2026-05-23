@@ -10859,6 +10859,14 @@ section {
   padding-bottom: 5rem;
 }
 
+@media screen and (max-width: 768px) {
+  aside,
+  section {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+}
+
 .app-badge {
   height: 3rem;
 }
@@ -10894,8 +10902,8 @@ section {
 
 .user-photo {
   display: flex;
-  align-items: right;
-  justify-content: right;
+  align-items: flex-end;
+  justify-content: flex-end;
   position: relative;
 }
 
