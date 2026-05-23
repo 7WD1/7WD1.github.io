@@ -1,0 +1,15 @@
+Concept-level explanations are the natural upgrade from feature-level ones. But doing concept explanations on multimodal models is not twice as hard. It is an order of magnitude harder.
+
+Traditional concept methods like TCAV work well on single-modality models. You define concepts like stripes or round shapes or red colors. Then you test if model decisions rely on these concepts. But multimodal models break this approach. Concepts no longer live in one modality. The concept "cute" involves both image appearance and text semantics. How do you locate a cross-modal concept in a unified representation space?
+
+This NeurIPS 2024 paper proposes a framework for this problem. The core idea projects multimodal intermediate representations into a shared concept space. Then it performs concept attribution in this shared space. The technical approach uses multi-view alignment. Image features and text features each pass through their own projection heads. Both map to the same concept space. Then the framework computes concept activation sensitivity.
+
+Experiments are solid. The authors evaluate on visual question answering, image captioning, and cross-modal retrieval. Results show something important. Single-modality concept methods fail badly on multimodal models. They miss concepts encoded differently across modalities.
+
+The most interesting finding involves concept interactions. Some concepts are invisible in any single modality. They only appear during cross-modal interaction. Take the concept of irony. The image looks normal. The text looks normal. But the image-text combination creates an ironic tone. This is an emergent concept. Emergent concepts are the unique challenge of multimodal interpretability.
+
+But I question the evaluation approach. Concept explanation faithfulness has always been weak in this field. The paper uses proxy tasks for indirect verification. Remove a concept and check if the output changes. This shows correlation between concept and output. It does not prove causation. True causal verification needs counterfactual experiments. Change only the target concept while keeping everything else constant. But editing one concept without touching others is nearly impossible.
+
+Another concern is concept definition subjectivity. Who decides what counts as a concept? The paper uses manually defined concept sets. This choice directly shapes the conclusions. Different concept definitions could yield completely different results. This is a fundamental problem the field has not solved.
+
+Pixel attribution asks: where is the model looking? Concept explanation asks: what is the model thinking? For complex systems like multimodal models, only concept-level explanations have any hope of helping humans understand model behavior. This paper makes a real step forward. But the fundamental challenges remain open.
