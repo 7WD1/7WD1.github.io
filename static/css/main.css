@@ -1057,7 +1057,7 @@ section .main-body{
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 40px;
+    height: 44px;
     pointer-events: none;
     z-index: 9998;
     overflow: hidden;
@@ -1066,29 +1066,30 @@ section .main-body{
 .crab {
     position: absolute;
     bottom: 2px;
+    left: 0;
     font-size: 1.3em;
     user-select: none;
     will-change: transform;
-    animation: crab-walk linear infinite;
+    animation: crab-back-forth linear infinite;
     animation-fill-mode: backwards;
 }
 
-.crab.backward {
-    animation-name: crab-walk-back;
-}
-
-@keyframes crab-walk {
-    0% { transform: translateX(-40px) translateY(0); }
-    25% { transform: translateX(25vw) translateY(-4px); }
-    50% { transform: translateX(50vw) translateY(0); }
-    75% { transform: translateX(75vw) translateY(-3px); }
-    100% { transform: translateX(calc(100vw + 40px)) translateY(0); }
-}
-
-@keyframes crab-walk-back {
-    0% { transform: scaleX(-1) translateX(calc(100vw + 40px)) translateY(0); }
-    25% { transform: scaleX(-1) translateX(75vw) translateY(-4px); }
-    50% { transform: scaleX(-1) translateX(50vw) translateY(0); }
-    75% { transform: scaleX(-1) translateX(25vw) translateY(-3px); }
-    100% { transform: scaleX(-1) translateX(-40px) translateY(0); }
+@keyframes crab-back-forth {
+    0%   { transform: translateX(-40px) scaleX(1) translateY(0); }
+    5%   { transform: translateX(5vw) scaleX(1) translateY(-3px); }
+    10%  { transform: translateX(10vw) scaleX(1) translateY(0); }
+    20%  { transform: translateX(25vw) scaleX(1) translateY(-4px); }
+    30%  { transform: translateX(40vw) scaleX(1) translateY(0); }
+    40%  { transform: translateX(60vw) scaleX(1) translateY(-3px); }
+    45%  { transform: translateX(80vw) scaleX(1) translateY(0); }
+    49%  { transform: translateX(calc(100vw + 20px)) scaleX(1) translateY(-2px); }
+    50%  { transform: translateX(calc(100vw + 40px)) scaleX(-1) translateY(0); }
+    55%  { transform: translateX(95vw) scaleX(-1) translateY(-3px); }
+    60%  { transform: translateX(90vw) scaleX(-1) translateY(0); }
+    70%  { transform: translateX(75vw) scaleX(-1) translateY(-4px); }
+    80%  { transform: translateX(55vw) scaleX(-1) translateY(0); }
+    90%  { transform: translateX(30vw) scaleX(-1) translateY(-3px); }
+    95%  { transform: translateX(10vw) scaleX(-1) translateY(0); }
+    99%  { transform: translateX(-20px) scaleX(-1) translateY(-2px); }
+    100% { transform: translateX(-40px) scaleX(1) translateY(0); }
 }

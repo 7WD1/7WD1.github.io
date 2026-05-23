@@ -896,19 +896,19 @@
         }
     })();
 
-    // Crab Animation — 3 crabs always, infinite loop
+    // Crab Animation — 3 crabs running back and forth forever
     (function() {
         var container = document.getElementById('crab-container');
         if (!container) return;
         for (var i = 0; i < 3; i++) {
             var el = document.createElement('span');
-            el.className = 'crab' + (i % 2 === 1 ? ' backward' : '');
+            el.className = 'crab';
             el.textContent = '🦀';
-            el.style.bottom = (Math.random() * 10) + 'px';
+            el.style.bottom = (2 + Math.random() * 10) + 'px';
             el.style.fontSize = (1.1 + Math.random() * 0.5) + 'em';
-            var dur = 10 + Math.random() * 12;
+            var dur = 8 + i * 4 + Math.random() * 3;
             el.style.animationDuration = dur + 's';
-            el.style.animationDelay = (i * 3) + 's';
+            el.style.animationDelay = (i * 2.5) + 's';
             el.style.opacity = 0.8 + Math.random() * 0.2;
             container.appendChild(el);
         }
