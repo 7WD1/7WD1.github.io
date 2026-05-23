@@ -1,6 +1,6 @@
 We built machines that talk. They write poetry. They pass bar exams. They debug code. We have no idea how they do any of it. That is the LLM problem in one sentence. These models are black boxes. Billion-parameter black boxes. And we keep shipping them to production.
 
-A 2024 ACM Computing Surveys paper tackles this head-on. Zhao et al. wrote "Explainability for Large Language Models: A Survey." It maps the entire landscape. The paper runs over 40 pages. It covers hundreds of papers. It is the most thorough survey on LLM explainability to date. And its conclusions are uncomfortable.
+A 2024 ACM TIST paper tackles this head-on. Zhao et al. wrote "Explainability for Large Language Models: A Survey." It maps the entire landscape. The paper runs over 40 pages. It covers hundreds of papers. It is the most thorough survey on LLM explainability to date. And its conclusions are uncomfortable.
 
 The survey organizes XAI methods into six families. Each family has different assumptions. Each family has different failure modes.
 

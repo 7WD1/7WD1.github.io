@@ -1,6 +1,6 @@
 We assumed Chain-of-Thought means the model shows its reasoning. We were wrong.
 
-The industry believed this for years. The model writes out step-by-step logic. We trust it. We think we see inside the model's head. Turpin and team proved we see nothing of the sort. CoT is not explainability. It is post-hoc rationalization. The reasoning steps often diverge from actual internal computation.
+The industry believed this for years. The model writes out step-by-step logic. We trust it. We think we see inside the model's head. Barez and team proved we see nothing of the sort. CoT is not explainability. It is post-hoc rationalization. Building on earlier work by Turpin et al. (2023), who showed that models generate plausible reasoning chains even when their internal computation gets perturbed, this paper goes further. The reasoning steps often diverge from actual internal computation.
 
 Their method is clever. If CoT shows real reasoning, perturbing internals should change the CoT output. They ran the experiments. Models generate perfectly reasonable reasoning chains even when their internal computation paths get perturbed. CoT is not read from internal states. It gets composed fresh based on the prompt.
 
