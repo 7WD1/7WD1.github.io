@@ -8,12 +8,12 @@
 他的研究興趣集中在可解釋機器學習與可解釋人工智慧（XAI），應用領域涵蓋智慧城市、智慧交通系統、異常檢測與暴力檢測。他已在多個高影響力期刊發表論文，包括 IEEE Trans. Syst., Man, Cybern.: Syst.、IEEE Trans. Intell. Transp. Syst.、IEEE Trans. Big Data、IEEE Trans. Emerg. Top. Comput. Intell.、Inf. Process. Manag. 以及 Expert Syst. Appl.。
 
 #### 學歷
-**淡江大學**，資訊工程學系博士 (2023 – 2026)
+**淡江大學**，資訊工程學系博士，新北市，台灣 (2023 – 2026)
 
-**銘傳大學**，資訊工程學系碩士 (2021 – 2023)
+**銘傳大學**，資訊工程學系碩士，桃園市，台灣 (2021 – 2023)
 - 論文：[一個基於LIME的新可解釋機器學習及其評估方法之研究 (The Research of a New LIME-based Method for Interpretable Machine Learning and its Evaluation Methods)](https://ndltd.ncl.edu.tw/cgi-bin/gs32/gsweb.cgi/login?o=dnclcdr&s=id=%22111MCU00392008%22.&searchmode=basic)
 
-**龍華科技大學**，多媒體與遊戲發展科學系學士 (2017 – 2021)
+**龍華科技大學**，多媒體與遊戲發展科學系學士，桃園市，台灣 (2017 – 2021)
 - 論文：[水管英雄：為漸凍症患者設計的眼動追蹤遊戲 (Pipe Hero: An Eye-Tracking Game Designed for ALS Patients)](https://www.youtube.com/watch?v=chWE9t0sKaE&t=1s)
 
 #### 研究興趣

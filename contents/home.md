@@ -8,12 +8,12 @@ Wen-Dong Jiang (Graduate Student Member, IEEE) received the B.S. degree in multi
 His research interests focus on interpretable machine learning and explainable artificial intelligence (XAI), with applications spanning smart cities, intelligent transportation systems, anomaly detection, and violence detection. He has authored multiple papers in high-impact journals, including IEEE Trans. Syst., Man, Cybern.: Syst., IEEE Trans. Intell. Transp. Syst., IEEE Trans. Big Data, IEEE Trans. Emerg. Top. Comput. Intell., Inf. Process. Manag., and Expert Syst. Appl.
 
 #### Education
-**Tamkang University**, Ph.D. in Computer Science and Information Engineering (2023 – 2026)
+**Tamkang University**, Ph.D. in Computer Science and Information Engineering, New Taipei City, Taiwan (2023 – 2026)
 
-**Ming Chuan University**, M.S. in Computer Science and Information Engineering (2021 – 2023)
+**Ming Chuan University**, M.S. in Computer Science and Information Engineering, Taoyuan, Taiwan (2021 – 2023)
 - Thesis: [一個基於LIME的新可解釋機器學習及其評估方法之研究 (The Research of a New LIME-based Method for Interpretable Machine Learning and its Evaluation Methods)](https://ndltd.ncl.edu.tw/cgi-bin/gs32/gsweb.cgi/login?o=dnclcdr&s=id=%22111MCU00392008%22.&searchmode=basic)
 
-**Lunghwa University of Science and Technology**, B.S. in Multimedia and Game Science Development (2017 – 2021)
+**Lunghwa University of Science and Technology**, B.S. in Multimedia and Game Science Development, Taoyuan, Taiwan (2017 – 2021)
 - Thesis: [水管英雄：為漸凍症患者設計的眼動追蹤遊戲 (Pipe Hero: An Eye-Tracking Game Designed for ALS Patients)](https://www.youtube.com/watch?v=chWE9t0sKaE&t=1s)
 
 #### Research Interests

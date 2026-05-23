@@ -31,9 +31,6 @@
     <!-- Bootstrap core JS-->
     <script type="text/javascript" src="static/js/bootstrap.bundle.min.js"></script>
 
-    <!-- For Compatability -->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-
     <!-- Markdown -->
     <script type="text/javascript" src="static/js/marked.min.js"></script>
 
@@ -50,18 +47,17 @@
             }
         };
     </script>
-    <script type="text/javascript" id="MathJax-script"
-        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
     <script type="text/javascript" id="MathJax-script" async
-        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 
     <!-- Core JS-->
-    <script type="text/javascript" src="static/js/scripts.js"></script>
     <script type="text/javascript" src="static/js/js-yaml.min.js"></script>
+    <script type="text/javascript" src="static/js/scripts.js"></script>
 
 </head>
 
-<body id="page-top">
+<body id="page-top" class="no-js">
+    <script>document.body.classList.remove('no-js');</script>
     <!-- Navigation-->
     <nav class="header navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
         <div class="container px-5">
@@ -383,41 +379,52 @@
     }
 
     function animateCounter(el, target, duration) {
-      var start = performance.now();
-      var totalFrames = target;
-      var frameInterval = duration / totalFrames;
-      var current = 0;
-      function tick(now) {
-        var elapsed = now - start;
-        current = Math.min(Math.floor(elapsed / frameInterval), target);
-        el.textContent = current;
-        if (current < target) {
-          setTimeout(function() { requestAnimationFrame(tick); }, 80);
-        } else {
-          el.textContent = target;
-        }
+      var startTime = performance.now();
+      function update(now) {
+        var elapsed = now - startTime;
+        var progress = Math.min(elapsed / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(eased * target);
+        if (progress < 1) requestAnimationFrame(update);
+        else el.textContent = target;
       }
-      requestAnimationFrame(tick);
+      requestAnimationFrame(update);
     }
 
     function initStatAnimations() {
-      const cards = document.querySelectorAll('.pub-stat-card');
-      const numbers = document.querySelectorAll('.pub-stat-number');
+      var cards = document.querySelectorAll('.pub-stat-card');
+      var numbers = document.querySelectorAll('.pub-stat-number');
 
-      const observer = new IntersectionObserver(function(entries) {
+      var totalPubs = publications.length;
+      var q1Count = publications.filter(function(p){ return p.jcr === 'Q1'; }).length;
+      var transCount = publications.filter(function(p){
+        return p.venue && (p.venue.indexOf('IEEE Trans.') === 0 || p.venue.indexOf('IEEE Transactions') === 0);
+      }).length;
+
+      if (numbers.length >= 3) {
+        numbers[0].setAttribute('data-target', totalPubs);
+        numbers[1].setAttribute('data-target', q1Count);
+        numbers[2].setAttribute('data-target', transCount);
+        var labels = numbers[0].closest('.pub-stats-bar').querySelectorAll('.pub-stat-label');
+        if (labels.length >= 1) labels[0].textContent = 'Total Publications (' + totalPubs + ')';
+        if (labels.length >= 2) labels[1].textContent = 'JCR Q1 Journals (' + q1Count + ')';
+        if (labels.length >= 3) labels[2].textContent = 'IEEE/ACM Trans. (' + transCount + ')';
+      }
+
+      var observer = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
           if (entry.isIntersecting) {
             cards.forEach(function(c) { c.classList.add('visible'); });
             numbers.forEach(function(n) {
-              const target = parseInt(n.getAttribute('data-target'), 10);
-              animateCounter(n, target, 3000);
+              var target = parseInt(n.getAttribute('data-target'), 10);
+              animateCounter(n, target, 1500);
             });
             observer.disconnect();
           }
         });
       }, { threshold: 0.3 });
 
-      const statsBar = document.getElementById('pub-stats-bar');
+      var statsBar = document.getElementById('pub-stats-bar');
       if (statsBar) observer.observe(statsBar);
     }
 
