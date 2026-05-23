@@ -134,9 +134,11 @@ section .main-body{
 @media screen and (max-width: 991px) {
     #avatar {
         float: none;
+        height: auto;
+        display: flex;
+        justify-content: center;
         margin: 0 auto;
-        text-align: center;
-        top: -40px;
+        top: -55px;
     }
     #avatar img {
         height: max(110px, min(160px, calc(100vw / 5)));
@@ -525,7 +527,8 @@ section .main-body{
         opacity: 1 !important;
         transform: none !important;
     }
-    #snow-container { display: none !important; }
+    #snow-container,
+    #crab-container { display: none !important; }
 }
 
 /* ===== Snowfall Effect ===== */
@@ -1002,7 +1005,7 @@ section .main-body{
     }
 
     #avatar {
-        top: -25px;
+        top: -40px;
     }
 
     #avatar img {
@@ -1067,10 +1070,11 @@ section .main-body{
     user-select: none;
     will-change: transform;
     animation: crab-walk linear infinite;
+    animation-fill-mode: backwards;
 }
 
 .crab.backward {
-    transform: scaleX(-1);
+    animation-name: crab-walk-back;
 }
 
 @keyframes crab-walk {
@@ -1079,10 +1083,6 @@ section .main-body{
     50% { transform: translateX(50vw) translateY(0); }
     75% { transform: translateX(75vw) translateY(-3px); }
     100% { transform: translateX(calc(100vw + 40px)) translateY(0); }
-}
-
-.crab.backward {
-    animation-name: crab-walk-back;
 }
 
 @keyframes crab-walk-back {
