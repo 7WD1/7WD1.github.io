@@ -76,6 +76,9 @@
                         <a class="nav-link me-lg-3" href="#publications">PUBLICATIONS</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link me-lg-3" href="#vlog">VLOG</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link me-lg-3" href="#demos">DEMO</a>
                     </li>
                 </ul>
@@ -154,6 +157,18 @@
                 </div>
             </div>
             <div class="pub-list" id="pub-list"></div>
+        </div>
+    </section>
+
+    <!-- Vlog -->
+    <section class="bg-gradient-primary-to-secondary-light mt5 md5" id="vlog">
+        <div class="container px-5">
+            <header>
+                <h2 id="vlog-subtitle"><i class="bi bi-pencil-fill"></i>&nbsp;VLOG</h2>
+            </header>
+            <div class="vlog-grid" id="vlog-grid">
+                <!-- Vlog cards will be inserted by JS -->
+            </div>
         </div>
     </section>
 
@@ -565,6 +580,202 @@
         });
       });
     });
+    </script>
+
+    <!-- Vlog Modal -->
+    <div class="vlog-modal-overlay" id="vlog-modal-overlay">
+        <div class="vlog-modal" id="vlog-modal">
+            <div class="vlog-modal-header">
+                <h3 id="vlog-modal-title"></h3>
+                <div class="vlog-modal-controls">
+                    <button class="vlog-lang-toggle" id="vlog-modal-lang-toggle">中文</button>
+                    <button class="vlog-modal-close" id="vlog-modal-close">&times;</button>
+                </div>
+            </div>
+            <div class="vlog-modal-meta" id="vlog-modal-meta"></div>
+            <div class="vlog-modal-body" id="vlog-modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Vlog rendering script -->
+    <script>
+    (function() {
+        'use strict';
+
+        var vlogs = [
+            {
+                titleEn: 'TileRT: Rescuing GPU Compute from Execution Boundaries',
+                titleZh: 'TileRT：把GPU算力从execution boundary里捞出来',
+                date: '2026-07-18',
+                tags: ['LLM Inference', 'Systems'],
+                link: 'https://github.com/tile-ai/TileRT',
+                contentEn: 'contents/vlog-tilert.md',
+                contentZh: 'contents/vlog-tilert-zh.md',
+            },
+        ];
+
+        var vlogContent = {};  // { '<path>': 'rendered html', ... }
+
+        function createVlogCard(vlog, index) {
+            var currentLang = localStorage.getItem('lang') || 'en';
+            var title = currentLang === 'zh' ? vlog.titleZh : vlog.titleEn;
+
+            var tagsHtml = vlog.tags.map(function(t) {
+                return '<span class="vlog-tag">' + t + '</span>';
+            }).join('');
+
+            return '<div class="vlog-card" data-index="' + index + '">' +
+                '<div class="vlog-card-main">' +
+                    '<div class="vlog-card-title">' + title + '</div>' +
+                    '<div class="vlog-card-bottom">' +
+                        '<span class="vlog-card-date"><i class="bi bi-calendar3"></i> ' + vlog.date + '</span>' +
+                        '<div class="vlog-card-tags">' + tagsHtml + '</div>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="vlog-card-arrow"><i class="bi bi-arrow-right"></i></div>' +
+            '</div>';
+        }
+
+        function renderVlogCards() {
+            var grid = document.getElementById('vlog-grid');
+            if (!grid) return;
+            var currentLang = localStorage.getItem('lang') || 'en';
+            grid.innerHTML = vlogs.map(function(v, i) {
+                return createVlogCard(v, i);
+            }).join('');
+
+            // Attach click handlers
+            var cards = grid.querySelectorAll('.vlog-card');
+            cards.forEach(function(card) {
+                card.addEventListener('click', function() {
+                    var idx = parseInt(card.getAttribute('data-index'), 10);
+                    openVlogModal(idx);
+                });
+            });
+        }
+
+        function openVlogModal(index) {
+            var vlog = vlogs[index];
+            if (!vlog) return;
+
+            var currentLang = localStorage.getItem('lang') || 'en';
+            var modalTitle = document.getElementById('vlog-modal-title');
+            var modalBody = document.getElementById('vlog-modal-body');
+            var modalMeta = document.getElementById('vlog-modal-meta');
+            var langBtn = document.getElementById('vlog-modal-lang-toggle');
+
+            modalTitle.textContent = currentLang === 'zh' ? vlog.titleZh : vlog.titleEn;
+
+            // Meta info
+            var metaHtml = '<span class="vlog-modal-date"><i class="bi bi-calendar3"></i> ' + vlog.date + '</span>';
+            vlog.tags.forEach(function(t) {
+                metaHtml += '<span class="vlog-modal-tag">' + t + '</span>';
+            });
+            if (vlog.link) {
+                metaHtml += '<a href="' + vlog.link + '" target="_blank" rel="noopener" class="vlog-modal-link"><i class="bi bi-github"></i> GitHub</a>';
+            }
+            modalMeta.innerHTML = metaHtml;
+
+            // Language toggle button
+            langBtn.textContent = currentLang === 'en' ? '中文' : 'Eng';
+            langBtn.setAttribute('data-current-lang', currentLang);
+            langBtn.setAttribute('data-vlog-index', index);
+
+            // Load and render content
+            var contentPath = currentLang === 'zh' ? vlog.contentZh : vlog.contentEn;
+            loadVlogContent(contentPath, modalBody);
+
+            // Show modal
+            var overlay = document.getElementById('vlog-modal-overlay');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function loadVlogContent(path, container) {
+            if (vlogContent[path]) {
+                container.innerHTML = vlogContent[path];
+                safeTypeset();
+                return;
+            }
+            container.innerHTML = '<p style="color:#888;">Loading...</p>';
+            fetch(path)
+                .then(function(r) { return r.text(); })
+                .then(function(md) {
+                    var html = marked.parse(md);
+                    vlogContent[path] = html;
+                    container.innerHTML = html;
+                    safeTypeset();
+                })
+                .catch(function(e) {
+                    container.innerHTML = '<p style="color:#c00;">Failed to load content.</p>';
+                    console.warn('Vlog content load error:', e);
+                });
+        }
+
+        function closeVlogModal() {
+            var overlay = document.getElementById('vlog-modal-overlay');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function safeTypeset() {
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                MathJax.typesetPromise().catch(function(e) {
+                    console.warn('MathJax typeset failed:', e);
+                });
+            } else if (window.MathJax && window.MathJax.typeset) {
+                try { MathJax.typeset(); } catch (e) { /* ignore */ }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderVlogCards();
+
+            // Close modal
+            var closeBtn = document.getElementById('vlog-modal-close');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeVlogModal);
+            }
+
+            // Close on overlay click
+            var overlay = document.getElementById('vlog-modal-overlay');
+            if (overlay) {
+                overlay.addEventListener('click', function(e) {
+                    if (e.target === overlay) closeVlogModal();
+                });
+            }
+
+            // Close on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeVlogModal();
+            });
+
+            // Language toggle inside modal
+            var modalLangBtn = document.getElementById('vlog-modal-lang-toggle');
+            if (modalLangBtn) {
+                modalLangBtn.addEventListener('click', function() {
+                    var currentLang = modalLangBtn.getAttribute('data-current-lang');
+                    var nextLang = currentLang === 'en' ? 'zh' : 'en';
+                    var idx = parseInt(modalLangBtn.getAttribute('data-vlog-index'), 10);
+                    var vlog = vlogs[idx];
+                    if (!vlog) return;
+
+                    // Update title
+                    var modalTitle = document.getElementById('vlog-modal-title');
+                    modalTitle.textContent = nextLang === 'zh' ? vlog.titleZh : vlog.titleEn;
+
+                    // Update button
+                    modalLangBtn.textContent = nextLang === 'en' ? '中文' : 'Eng';
+                    modalLangBtn.setAttribute('data-current-lang', nextLang);
+
+                    // Load new language content
+                    var contentPath = nextLang === 'zh' ? vlog.contentZh : vlog.contentEn;
+                    var modalBody = document.getElementById('vlog-modal-body');
+                    loadVlogContent(contentPath, modalBody);
+                });
+            }
+        });
+    })();
     </script>
 
 </body>

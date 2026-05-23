@@ -564,3 +564,329 @@ section .main-body{
         gap: 16px;
     }
 }
+
+/* ===== Vlog Section ===== */
+.vlog-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 8px;
+}
+
+.vlog-card {
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+}
+
+.vlog-card:hover {
+    box-shadow: 0 6px 24px rgba(57, 72, 210, 0.12);
+    transform: translateY(-2px);
+    border-color: #c7cde8;
+}
+
+.vlog-card-main {
+    flex: 1;
+    min-width: 0;
+}
+
+.vlog-card-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #1a1a2e;
+    line-height: 1.5;
+    margin-bottom: 8px;
+    font-family: 'Kanit', sans-serif;
+}
+
+.vlog-card-bottom {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.vlog-card-date {
+    font-size: 0.82rem;
+    color: #6c757d;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.vlog-card-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.vlog-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 10px;
+    border-radius: 11px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.vlog-card-arrow {
+    flex-shrink: 0;
+    color: #3948d2;
+    font-size: 1.1rem;
+    transition: transform 0.3s;
+}
+
+.vlog-card:hover .vlog-card-arrow {
+    transform: translateX(4px);
+}
+
+/* ===== Vlog Modal ===== */
+.vlog-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 20000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 16px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    overflow-y: auto;
+}
+
+.vlog-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.vlog-modal {
+    background: #fff;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 780px;
+    max-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
+    transform: translateY(20px);
+    transition: transform 0.3s;
+}
+
+.vlog-modal-overlay.active .vlog-modal {
+    transform: translateY(0);
+}
+
+.vlog-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 24px 28px 0 28px;
+}
+
+.vlog-modal-header h3 {
+    font-family: 'Kanit', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    line-height: 1.5;
+    margin: 0;
+    flex: 1;
+}
+
+.vlog-modal-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.vlog-lang-toggle {
+    padding: 5px 14px;
+    border: 2px solid #3948d2;
+    border-radius: 20px;
+    background: transparent;
+    color: #3948d2;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.vlog-lang-toggle:hover {
+    background: #3948d2;
+    color: #fff;
+}
+
+.vlog-modal-close {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: #f0f0f0;
+    color: #333;
+    font-size: 1.3rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.vlog-modal-close:hover {
+    background: #3948d2;
+    color: #fff;
+}
+
+.vlog-modal-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 12px 28px;
+    border-bottom: 1px solid #eee;
+}
+
+.vlog-modal-date {
+    font-size: 0.82rem;
+    color: #6c757d;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.vlog-modal-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 12px;
+    border-radius: 11px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.vlog-modal-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #3948d2;
+    text-decoration: none;
+    padding: 3px 12px;
+    border-radius: 8px;
+    background: #dbeafe;
+    transition: background 0.2s;
+}
+
+.vlog-modal-link:hover {
+    background: #bfdbfe;
+}
+
+.vlog-modal-body {
+    padding: 24px 28px 28px;
+    overflow-y: auto;
+    font-family: 'Mulish', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: #333;
+    flex: 1;
+}
+
+.vlog-modal-body h1,
+.vlog-modal-body h2,
+.vlog-modal-body h3,
+.vlog-modal-body h4 {
+    font-family: 'Kanit', sans-serif;
+    color: #1a1a2e;
+    margin-top: 1.2em;
+    margin-bottom: 0.5em;
+}
+
+.vlog-modal-body p {
+    margin-bottom: 1em;
+}
+
+.vlog-modal-body code {
+    background: #f0f1f5;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.vlog-modal-body pre {
+    background: #1a1a2e;
+    color: #e0e0e0;
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin-bottom: 1em;
+}
+
+.vlog-modal-body pre code {
+    background: none;
+    padding: 0;
+}
+
+.vlog-modal-body img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.vlog-modal-body a {
+    color: #3948d2;
+    text-decoration: underline;
+}
+
+.vlog-modal-body blockquote {
+    border-left: 4px solid #3948d2;
+    margin-left: 0;
+    padding-left: 16px;
+    color: #555;
+    font-style: italic;
+}
+
+@media screen and (max-width: 768px) {
+    .vlog-modal {
+        max-height: calc(100vh - 40px);
+        border-radius: 12px;
+    }
+
+    .vlog-modal-header {
+        padding: 18px 18px 0 18px;
+    }
+
+    .vlog-modal-header h3 {
+        font-size: 1.1rem;
+    }
+
+    .vlog-modal-meta {
+        padding: 10px 18px;
+    }
+
+    .vlog-modal-body {
+        padding: 18px;
+        font-size: 0.95rem;
+    }
+}
