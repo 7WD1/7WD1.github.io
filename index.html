@@ -1070,28 +1070,41 @@
     })();
     </script>
 
-    <!-- Snowfall Effect -->
+    <!-- Matrix Rain Effect -->
     <script>
     (function() {
         var container = document.getElementById('snow-container');
         if (!container) return;
-        var flakes = ['❄','❅','❆'];
-        var isMobile = window.innerWidth < 768;
-        var maxCount = isMobile ? 20 : 50;
-        var count = Math.min(maxCount, Math.floor(window.innerWidth / 25));
-        if (isMobile && count < 10) count = 10;
-        for (var i = 0; i < count; i++) {
-            var el = document.createElement('span');
-            el.className = 'snowflake';
-            el.textContent = flakes[Math.floor(Math.random() * flakes.length)];
-            el.style.left = Math.random() * 100 + '%';
-            el.style.fontSize = (0.6 + Math.random() * 1.2) + 'em';
-            el.style.opacity = 0.3 + Math.random() * 0.5;
-            var dur = isMobile ? (4 + Math.random() * 8) : (6 + Math.random() * 10);
-            el.style.animationDuration = dur + 's';
-            el.style.animationDelay = Math.random() * dur + 's';
-            container.appendChild(el);
+        var canvas = document.createElement('canvas');
+        canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;';
+        container.appendChild(canvas);
+        var ctx = canvas.getContext('2d');
+        var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*<>[]{}';
+        var fontSize = 14;
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
+        resize();
+        window.addEventListener('resize', resize);
+        var cols = Math.floor(canvas.width / fontSize);
+        var drops = [];
+        for (var i = 0; i < cols; i++) drops[i] = Math.random() * -50;
+        function draw() {
+            ctx.fillStyle = 'rgba(255,255,255,0.04)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.font = fontSize + 'px monospace';
+            for (var i = 0; i < drops.length; i++) {
+                var c = chars[Math.floor(Math.random() * chars.length)];
+                var y = drops[i] * fontSize;
+                ctx.fillStyle = 'rgba(0,255,0,0.08)';
+                ctx.fillText(c, i * fontSize, y);
+                if (y > canvas.height && Math.random() > 0.98) drops[i] = 0;
+                drops[i]++;
+            }
+            requestAnimationFrame(draw);
+        }
+        draw();
     })();
 
     // Crab Animation — 3 crabs running back and forth forever
