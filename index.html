@@ -59,20 +59,91 @@
 <body id="page-top" class="no-js">
     <!-- Loading Screen -->
     <div id="loading-screen">
+        <canvas id="matrix-canvas"></canvas>
         <div class="loading-content">
-            <div class="loading-spinner"></div>
-            <div class="loading-text">Wen-Dong Jiang</div>
-            <div class="loading-sub">Loading...</div>
+            <div class="loading-glitch" id="loading-glitch">SYSTEM BREACH</div>
+            <div class="loading-terminal" id="loading-terminal"></div>
+            <div class="loading-bar-track"><div class="loading-bar-fill" id="loading-bar"></div></div>
+            <div class="loading-status" id="loading-status">INITIALIZING...</div>
         </div>
+        <div class="scanline"></div>
     </div>
     <script>
-    window.addEventListener('load', function() {
-        setTimeout(function() {
-            var ls = document.getElementById('loading-screen');
-            ls.classList.add('fade-out');
-            setTimeout(function() { ls.style.display = 'none'; }, 600);
-        }, 3000);
-    });
+    (function(){
+        var canvas = document.getElementById('matrix-canvas');
+        var ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()_+-=[]{}|;:,./<>?~';
+        var fontSize = 14;
+        var cols = Math.floor(canvas.width / fontSize);
+        var drops = [];
+        for (var i = 0; i < cols; i++) drops[i] = Math.random() * -100;
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(10, 10, 30, 0.08)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#0f0';
+            ctx.font = fontSize + 'px monospace';
+            for (var i = 0; i < drops.length; i++) {
+                var text = chars.charAt(Math.floor(Math.random() * chars.length));
+                ctx.fillStyle = Math.random() > 0.95 ? '#0ff' : '#0f0';
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        var matrixInterval = setInterval(drawMatrix, 45);
+
+        var terminal = document.getElementById('loading-terminal');
+        var bar = document.getElementById('loading-bar');
+        var status = document.getElementById('loading-status');
+        var glitch = document.getElementById('loading-glitch');
+        var lines = [
+            '> Scanning network ports...',
+            '> Found target: wendongjiang@ieee.org',
+            '> Bypassing firewall...',
+            '> Firewall bypassed [OK]',
+            '> Decrypting AES-256 encryption...',
+            '> Access granted...',
+            '> Downloading profile data...',
+            '> Loading modules...',
+            '> SYSTEM BREACH COMPLETE'
+        ];
+        var lineIdx = 0, charIdx = 0, progress = 0;
+        function typeLine() {
+            if (lineIdx >= lines.length) {
+                glitch.classList.add('glitch-done');
+                status.textContent = 'ACCESS GRANTED';
+                status.style.color = '#0f0';
+                bar.style.width = '100%';
+                setTimeout(function() {
+                    clearInterval(matrixInterval);
+                    var ls = document.getElementById('loading-screen');
+                    ls.classList.add('crash-out');
+                    setTimeout(function() { ls.style.display = 'none'; }, 800);
+                }, 600);
+                return;
+            }
+            if (charIdx < lines[lineIdx].length) {
+                terminal.textContent += lines[lineIdx].charAt(charIdx);
+                charIdx++;
+                setTimeout(typeLine, 20 + Math.random() * 30);
+            } else {
+                terminal.textContent += '\n';
+                terminal.scrollTop = terminal.scrollHeight;
+                charIdx = 0;
+                lineIdx++;
+                progress = Math.min(100, Math.round((lineIdx / lines.length) * 100));
+                bar.style.width = progress + '%';
+                status.textContent = progress + '% COMPLETE';
+                setTimeout(typeLine, 150 + Math.random() * 200);
+            }
+        }
+        setTimeout(typeLine, 500);
+        setInterval(function() {
+            glitch.style.transform = 'translate(' + (Math.random()*6-3) + 'px,' + (Math.random()*4-2) + 'px)';
+        }, 80);
+    })();
     </script>
 
     <!-- Snowfall -->
