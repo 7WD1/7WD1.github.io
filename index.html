@@ -57,6 +57,24 @@
 </head>
 
 <body id="page-top" class="no-js">
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Wen-Dong Jiang</div>
+            <div class="loading-sub">Loading...</div>
+        </div>
+    </div>
+    <script>
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            var ls = document.getElementById('loading-screen');
+            ls.classList.add('fade-out');
+            setTimeout(function() { ls.style.display = 'none'; }, 600);
+        }, 3000);
+    });
+    </script>
+
     <!-- Snowfall -->
     <div id="snow-container" aria-hidden="true"></div>
     <!-- Crabs -->
