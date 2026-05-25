@@ -1210,7 +1210,7 @@ section .main-body{
 
 @keyframes collab-scroll {
     0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-180px * 6 - 28px * 6)); }
+    100% { transform: translateX(calc(-180px * 7 - 28px * 7)); }
 }
 
 @media screen and (max-width: 768px) {
@@ -1222,7 +1222,7 @@ section .main-body{
 
     @keyframes collab-scroll {
         0% { transform: translateX(0); }
-        100% { transform: translateX(calc(-130px * 6 - 28px * 6)); }
+        100% { transform: translateX(calc(-130px * 7 - 28px * 7)); }
     }
 }
 
