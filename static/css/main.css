@@ -1142,6 +1142,31 @@ section .main-body{
     margin-left: 4px;
 }
 
+.contact-status {
+    margin-top: 14px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-family: 'Mulish', sans-serif;
+    display: none;
+}
+
+.contact-status:not(:empty) {
+    display: block;
+}
+
+.contact-success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.contact-fallback {
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
 @media screen and (max-width: 768px) {
     .contact-field input,
     .contact-field textarea {
