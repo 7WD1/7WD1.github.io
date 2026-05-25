@@ -1620,6 +1620,40 @@ section .main-body{
     box-shadow: 0 6px 20px rgba(29, 185, 84, 0.5);
 }
 
+/* ===== Floating Music Notes ===== */
+.music-note {
+    position: fixed;
+    z-index: 20000;
+    pointer-events: none;
+    color: #1db954;
+    opacity: 0;
+    font-size: 28px;
+    animation: note-float 2.8s ease-out forwards;
+}
+
+@keyframes note-float {
+    0% {
+        opacity: 0.9;
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    15% {
+        opacity: 0.85;
+        transform: translate(var(--dx1), -30px) scale(0.85) rotate(var(--rot1));
+    }
+    40% {
+        opacity: 0.6;
+        transform: translate(var(--dx2), -70px) scale(0.6) rotate(var(--rot2));
+    }
+    70% {
+        opacity: 0.3;
+        transform: translate(var(--dx3), -120px) scale(0.35) rotate(var(--rot3));
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--dx4), -170px) scale(0.1) rotate(var(--rot4));
+    }
+}
+
 @media screen and (max-width: 768px) {
     .honor-item {
         width: 180px;

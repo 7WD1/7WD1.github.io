@@ -593,6 +593,7 @@
         var toggle = document.getElementById('player-toggle');
         var player = document.getElementById('music-player');
         var playing = false;
+        var noteTimer = null;
 
         function formatTime(s) {
             if (isNaN(s)) return '0:00';
@@ -601,19 +602,73 @@
             return m + ':' + (sec < 10 ? '0' : '') + sec;
         }
 
+        function setPlayingState() {
+            icon.className = 'bi bi-pause-fill';
+            vinyl.style.animationPlayState = 'running';
+            needle.classList.add('needle-active');
+            playing = true;
+        }
+
+        function setPausedState() {
+            icon.className = 'bi bi-play-fill';
+            vinyl.style.animationPlayState = 'paused';
+            needle.classList.remove('needle-active');
+            playing = false;
+        }
+
+        /* Floating music notes */
+        var noteSymbols = ['♩','♪','♫','♬','♪','♫'];
+        function spawnNote() {
+            if (!playing) return;
+            var note = document.createElement('div');
+            note.className = 'music-note';
+            note.textContent = noteSymbols[Math.floor(Math.random() * noteSymbols.length)];
+
+            var playerRect = player.getBoundingClientRect();
+            var startX = playerRect.left + playerRect.width / 2 + (Math.random() - 0.5) * 80;
+            var startY = playerRect.top + 10;
+            note.style.left = startX + 'px';
+            note.style.top = startY + 'px';
+
+            var hue = 120 + Math.random() * 40;
+            note.style.color = 'hsl(' + hue + ', 70%, ' + (55 + Math.random()*20) + '%)';
+            note.style.fontSize = (22 + Math.random() * 16) + 'px';
+
+            var dx = (Math.random() - 0.5) * 120;
+            note.style.setProperty('--dx1', (dx * 0.2) + 'px');
+            note.style.setProperty('--dx2', (dx * 0.5) + 'px');
+            note.style.setProperty('--dx3', (dx * 0.75) + 'px');
+            note.style.setProperty('--dx4', dx + 'px');
+            note.style.setProperty('--rot1', ((Math.random()-0.5)*30) + 'deg');
+            note.style.setProperty('--rot2', ((Math.random()-0.5)*60) + 'deg');
+            note.style.setProperty('--rot3', ((Math.random()-0.5)*90) + 'deg');
+            note.style.setProperty('--rot4', ((Math.random()-0.5)*120) + 'deg');
+
+            document.body.appendChild(note);
+            setTimeout(function(){ if (note.parentNode) note.parentNode.removeChild(note); }, 3000);
+        }
+
+        function startNotes() {
+            stopNotes();
+            noteTimer = setInterval(function() {
+                spawnNote();
+                if (Math.random() > 0.5) setTimeout(spawnNote, 300 + Math.random() * 400);
+            }, 800);
+        }
+
+        function stopNotes() {
+            if (noteTimer) { clearInterval(noteTimer); noteTimer = null; }
+        }
+
         btn.addEventListener('click', function() {
             if (playing) {
                 audio.pause();
-                icon.className = 'bi bi-play-fill';
-                vinyl.style.animationPlayState = 'paused';
-                needle.classList.remove('needle-active');
-                playing = false;
+                setPausedState();
+                stopNotes();
             } else {
                 audio.play().catch(function(){});
-                icon.className = 'bi bi-pause-fill';
-                vinyl.style.animationPlayState = 'running';
-                needle.classList.add('needle-active');
-                playing = true;
+                setPlayingState();
+                startNotes();
             }
         });
 
@@ -643,6 +698,21 @@
             player.classList.remove('player-collapsed');
             this.classList.remove('visible');
         });
+
+        /* Auto-play on first user interaction */
+        function autoPlay() {
+            if (playing) return;
+            audio.play().then(function(){
+                setPlayingState();
+                startNotes();
+                document.removeEventListener('click', autoPlay);
+                document.removeEventListener('keydown', autoPlay);
+                document.removeEventListener('scroll', autoPlay);
+            }).catch(function(){});
+        }
+        document.addEventListener('click', autoPlay);
+        document.addEventListener('keydown', autoPlay);
+        document.addEventListener('scroll', autoPlay, {passive: true});
     })();
     </script>
 
