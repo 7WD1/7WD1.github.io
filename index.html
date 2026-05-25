@@ -61,7 +61,7 @@
     <div id="loading-screen">
         <canvas id="matrix-canvas"></canvas>
         <div class="loading-content">
-            <div class="loading-glitch" id="loading-glitch">SYSTEM BREACH</div>
+            <div class="loading-glitch" id="loading-glitch">LOADING WEN-DONG JIANG HOMEPAGE</div>
             <div class="loading-terminal" id="loading-terminal"></div>
             <div class="loading-bar-track"><div class="loading-bar-fill" id="loading-bar"></div></div>
             <div class="loading-status" id="loading-status">INITIALIZING...</div>
@@ -106,7 +106,6 @@
             '> Decrypting AES-256 encryption...',
             '> Access granted...',
             '> Downloading profile data...',
-            '> Loading modules...',
             '> SYSTEM BREACH COMPLETE'
         ];
         var lineIdx = 0, charIdx = 0, progress = 0;
@@ -121,13 +120,13 @@
                     var ls = document.getElementById('loading-screen');
                     ls.classList.add('crash-out');
                     setTimeout(function() { ls.style.display = 'none'; }, 800);
-                }, 600);
+                }, 400);
                 return;
             }
             if (charIdx < lines[lineIdx].length) {
                 terminal.textContent += lines[lineIdx].charAt(charIdx);
                 charIdx++;
-                setTimeout(typeLine, 20 + Math.random() * 30);
+                setTimeout(typeLine, 8 + Math.random() * 15);
             } else {
                 terminal.textContent += '\n';
                 terminal.scrollTop = terminal.scrollHeight;
@@ -136,7 +135,7 @@
                 progress = Math.min(100, Math.round((lineIdx / lines.length) * 100));
                 bar.style.width = progress + '%';
                 status.textContent = progress + '% COMPLETE';
-                setTimeout(typeLine, 150 + Math.random() * 200);
+                setTimeout(typeLine, 60 + Math.random() * 100);
             }
         }
         setTimeout(typeLine, 500);
