@@ -119,6 +119,8 @@
                 bar.style.width = '100%';
                 setTimeout(function() {
                     clearInterval(matrixInterval);
+                    clearInterval(glitchInterval);
+                    window.removeEventListener('resize', resizeCanvas);
                     var ls = document.getElementById('loading-screen');
                     ls.classList.add('crash-out');
                     setTimeout(function() { ls.style.display = 'none'; }, 800);
@@ -190,7 +192,7 @@
     </nav>
 
     <!-- Top Section -->
-    <section class="top-section" style="background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #0d1a0d 100%);">
+    <section class="top-section" style="background: linear-gradient(135deg, #000000 0%, #050505 50%, #000000 100%);">
         <div class="top-section-content">
             <div class="container px-5">
                 <h2 id="top-section-bg-text" class="text-white display-3 lh-1 font-alt"></h2>
