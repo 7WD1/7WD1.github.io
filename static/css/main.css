@@ -1177,8 +1177,9 @@ section .main-body{
 
 .collab-track {
     display: flex;
+    flex-wrap: nowrap;
     gap: 28px;
-    animation: collab-scroll 30s linear infinite;
+    animation: collab-scroll 50s linear infinite;
     width: max-content;
 }
 
