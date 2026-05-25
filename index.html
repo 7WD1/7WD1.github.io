@@ -277,29 +277,23 @@
             <header>
                 <h2><i class="bi bi-envelope-fill"></i>&nbsp;CONTACT ME <span class="section-subtitle-zh">聯絡我</span></h2>
             </header>
-            <form class="contact-form" id="contact-form">
+            <form class="contact-form" action="https://formsubmit.co/wendongjiang@ieee.org" method="POST">
+                <input type="hidden" name="_subject" value="New message from your website">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="text" name="_honey" style="display:none">
                 <div class="contact-field">
                     <label for="contact-email">Your Email <span class="label-zh">您的電子郵件</span></label>
-                    <input type="email" id="contact-email" placeholder="your@email.com" required>
+                    <input type="email" id="contact-email" name="Email" placeholder="your@email.com" required>
                 </div>
                 <div class="contact-field">
                     <label for="contact-message">Message <span class="label-zh">訊息內容</span></label>
-                    <textarea id="contact-message" rows="5" placeholder="Write your message here... 在此輸入您的訊息..." required></textarea>
+                    <textarea id="contact-message" name="Message" rows="5" placeholder="Write your message here... 在此輸入您的訊息..." required></textarea>
                 </div>
                 <button type="submit" class="contact-send-btn">
                     <i class="bi bi-send-fill"></i>&nbsp;Send <span class="label-zh">發送</span>
                 </button>
             </form>
-            <script>
-            document.getElementById('contact-form').addEventListener('submit', function(e) {
-                e.preventDefault();
-                var email = document.getElementById('contact-email').value;
-                var message = document.getElementById('contact-message').value;
-                var subject = encodeURIComponent('New message from your website');
-                var body = encodeURIComponent('From: ' + email + '\n\n' + message);
-                window.location.href = 'mailto:wendongjiang@ieee.org?subject=' + subject + '&body=' + body;
-            });
-            </script>
         </div>
     </section>
 
