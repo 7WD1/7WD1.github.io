@@ -176,6 +176,9 @@
                         <a class="nav-link me-lg-3" href="#demos">DEMO</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link me-lg-3" href="#honors">HONORS</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link me-lg-3" href="#collaborators">COLLABORATORS</a>
                     </li>
                     <li class="nav-item">
@@ -187,7 +190,7 @@
     </nav>
 
     <!-- Top Section -->
-    <section class="top-section" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);">
+    <section class="top-section" style="background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #0d1a0d 100%);">
         <div class="top-section-content">
             <div class="container px-5">
                 <h2 id="top-section-bg-text" class="text-white display-3 lh-1 font-alt"></h2>
@@ -361,6 +364,77 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Honors -->
+    <section class="bg-gradient-primary-to-secondary-light mt5 md5" id="honors">
+        <div class="container px-5">
+            <header>
+                <h2><i class="bi bi-trophy-fill"></i>&nbsp;HONORS <span class="section-subtitle-zh">比賽榮譽</span></h2>
+            </header>
+            <div class="honor-carousel">
+                <button class="honor-arrow honor-arrow-left" id="honor-prev" aria-label="Previous"><i class="bi bi-chevron-left"></i></button>
+                <div class="honor-track-wrapper" id="honor-wrapper">
+                    <div class="honor-track" id="honor-track">
+                        <div class="honor-item"><img src="static/assets/img/honors/honor1.png" alt="Honor" loading="lazy"></div>
+                        <div class="honor-item"><img src="static/assets/img/honors/honor2.jpg" alt="Honor" loading="lazy"></div>
+                        <div class="honor-item"><img src="static/assets/img/honors/honor3.png" alt="Honor" loading="lazy"></div>
+                        <div class="honor-item"><img src="static/assets/img/honors/honor4.jpg" alt="Honor" loading="lazy"></div>
+                        <div class="honor-item"><img src="static/assets/img/honors/honor5.jpg" alt="Honor" loading="lazy"></div>
+                        <div class="honor-item"><img src="static/assets/img/honors/honor6.jpg" alt="Honor" loading="lazy"></div>
+                        <!-- duplicate for seamless loop -->
+                        <div class="honor-item"><img src="static/assets/img/honors/honor1.png" alt="Honor" loading="lazy"></div>
+                        <div class="honor-item"><img src="static/assets/img/honors/honor2.jpg" alt="Honor" loading="lazy"></div>
+                        <div class="honor-item"><img src="static/assets/img/honors/honor3.png" alt="Honor" loading="lazy"></div>
+                        <div class="honor-item"><img src="static/assets/img/honors/honor4.jpg" alt="Honor" loading="lazy"></div>
+                        <div class="honor-item"><img src="static/assets/img/honors/honor5.jpg" alt="Honor" loading="lazy"></div>
+                        <div class="honor-item"><img src="static/assets/img/honors/honor6.jpg" alt="Honor" loading="lazy"></div>
+                    </div>
+                </div>
+                <button class="honor-arrow honor-arrow-right" id="honor-next" aria-label="Next"><i class="bi bi-chevron-right"></i></button>
+            </div>
+            <script>
+            (function(){
+                var wrapper = document.getElementById('honor-wrapper');
+                var track = document.getElementById('honor-track');
+                if (!wrapper || !track) return;
+                var items = track.querySelectorAll('.honor-item');
+                var total = items.length;
+                var half = total / 2;
+                var speed = 0.5;
+                var pos = 0;
+                var paused = false;
+                function getItemWidth() {
+                    return (items[0] ? items[0].offsetWidth : 240) + 24;
+                }
+                function animate() {
+                    if (!paused) {
+                        pos += speed;
+                        var singleSet = getItemWidth() * half;
+                        if (pos >= singleSet) pos -= singleSet;
+                        track.style.transform = 'translateX(' + (-pos) + 'px)';
+                    }
+                    requestAnimationFrame(animate);
+                }
+                wrapper.addEventListener('mouseenter', function() { paused = true; });
+                wrapper.addEventListener('mouseleave', function() { paused = false; });
+                document.getElementById('honor-prev').addEventListener('click', function() {
+                    var step = getItemWidth();
+                    pos -= step;
+                    if (pos < 0) pos += getItemWidth() * half;
+                    track.style.transform = 'translateX(' + (-pos) + 'px)';
+                });
+                document.getElementById('honor-next').addEventListener('click', function() {
+                    var step = getItemWidth();
+                    pos += step;
+                    var singleSet = getItemWidth() * half;
+                    if (pos >= singleSet) pos -= singleSet;
+                    track.style.transform = 'translateX(' + (-pos) + 'px)';
+                });
+                requestAnimationFrame(animate);
+            })();
+            </script>
         </div>
     </section>
 
