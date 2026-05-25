@@ -1445,11 +1445,14 @@ section .main-body{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 36px;
-    height: 36px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #1db954, #148f3e);
-    box-shadow: 0 0 8px rgba(29, 185, 84, 0.4);
+    background-image: url('../img/album-cover.png');
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 0 6px rgba(29, 185, 84, 0.4);
+    border: 2px solid rgba(29, 185, 84, 0.3);
 }
 
 .player-vinyl-center::after {
@@ -1575,6 +1578,11 @@ section .main-body{
     .player-vinyl {
         width: 100px;
         height: 100px;
+    }
+
+    .player-vinyl-center {
+        width: 36px;
+        height: 36px;
     }
 
     .player-disc-inner {
