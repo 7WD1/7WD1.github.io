@@ -93,6 +93,8 @@
             }
         }
         var matrixInterval = setInterval(drawMatrix, 45);
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resizeCanvas);
 
         var terminal = document.getElementById('loading-terminal');
         var bar = document.getElementById('loading-bar');
@@ -139,7 +141,7 @@
             }
         }
         setTimeout(typeLine, 500);
-        setInterval(function() {
+        var glitchInterval = setInterval(function() {
             glitch.style.transform = 'translate(' + (Math.random()*6-3) + 'px,' + (Math.random()*4-2) + 'px)';
         }, 80);
     })();
@@ -1091,14 +1093,21 @@
         var drops = [];
         for (var i = 0; i < cols; i++) drops[i] = Math.random() * -50;
         function draw() {
-            ctx.fillStyle = 'rgba(10,10,30,0.06)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.font = fontSize + 'px monospace';
             for (var i = 0; i < drops.length; i++) {
                 var c = chars[Math.floor(Math.random() * chars.length)];
                 var y = drops[i] * fontSize;
-                ctx.fillStyle = 'rgba(0,255,0,0.08)';
+                ctx.fillStyle = 'rgba(0,255,0,0.12)';
                 ctx.fillText(c, i * fontSize, y);
+                // draw a few trailing chars for trail effect
+                for (var t = 1; t <= 5; t++) {
+                    var ty = y - t * fontSize;
+                    if (ty > 0) {
+                        ctx.fillStyle = 'rgba(0,255,0,' + (0.1 - t * 0.018) + ')';
+                        ctx.fillText(chars[Math.floor(Math.random() * chars.length)], i * fontSize, ty);
+                    }
+                }
                 if (y > canvas.height && Math.random() > 0.98) drops[i] = 0;
                 drops[i]++;
             }
