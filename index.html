@@ -587,7 +587,7 @@
             <button class="player-mute-btn" id="player-mute-btn" aria-label="Mute">
                 <i class="bi bi-volume-up-fill" id="player-mute-icon"></i>
             </button>
-            <input type="range" class="player-volume-slider" id="player-volume-slider" min="0" max="1" step="0.01" value="1" aria-label="Volume">
+            <input type="range" class="player-volume-slider" id="player-volume-slider" min="0" max="1" step="0.01" value="0.1" aria-label="Volume">
         </div>
         <div class="player-controls">
             <button class="player-prev-btn" id="player-prev-btn" aria-label="Previous">
@@ -610,6 +610,7 @@
     <script>
     (function(){
         var audio = document.getElementById('music-audio');
+        audio.volume = 0.1;
         var btn = document.getElementById('player-btn');
         var icon = document.getElementById('player-icon');
         var disc = document.getElementById('player-disc');
@@ -630,7 +631,7 @@
         var songTitle = document.getElementById('player-song');
         var playing = false;
         var noteTimer = null;
-        var lastVolume = 1;
+        var lastVolume = 0.1;
 
         var playlist = [
             { title: '好運來', src: 'static/assets/audio/BGM.mp3', cover: 'static/assets/img/album-cover.png' },
