@@ -65,6 +65,20 @@
                         var el = document.getElementById(key);
                         if (el && typeof yml[key] === 'string') {
                             el.innerHTML = yml[key];
+                            /* Apply neon character animation to hero title */
+                            if (key === 'top-section-bg-text') {
+                                var text = el.textContent || '';
+                                el.innerHTML = '';
+                                el.classList.add('hero-title');
+                                var chars = text.split('');
+                                chars.forEach(function(ch, idx) {
+                                    var span = document.createElement('span');
+                                    span.className = 'neon-char';
+                                    span.style.animationDelay = (idx * 0.08) + 's';
+                                    span.textContent = ch === ' ' ? ' ' : ch;
+                                    el.appendChild(span);
+                                });
+                            }
                         }
                     } catch (error) {
                         console.warn('Unknown id and value: ' + key, error);
