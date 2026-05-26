@@ -735,13 +735,9 @@
             if (audio.duration) audio.currentTime = pct * audio.duration;
         });
 
-        toggle.addEventListener('click', function() {
-            player.classList.add('player-collapsed');
-            document.getElementById('player-float-btn').classList.add('visible');
-        });
-
-        /* Entrance animation: green matrix rain when player opens */
-        function runEntranceAnimation() {
+        /* Permanent matrix rain background inside player */
+        var matrixInterval = null;
+        function initMatrixBg() {
             if (!entranceOverlay) return;
             entranceOverlay.innerHTML = '';
             var canvas = document.createElement('canvas');
@@ -756,12 +752,9 @@
             var cols = Math.floor(w / fontSize);
             var drops = [];
             for (var i = 0; i < cols; i++) drops[i] = Math.random() * -20;
-            var frames = 0;
-            var maxFrames = 60;
-            var interval;
 
             function draw() {
-                ctx.fillStyle = 'rgba(10, 10, 30, 0.15)';
+                ctx.fillStyle = 'rgba(10, 10, 30, 0.12)';
                 ctx.fillRect(0, 0, w, h);
                 ctx.font = fontSize + 'px monospace';
                 for (var i = 0; i < drops.length; i++) {
@@ -771,23 +764,36 @@
                     if (drops[i] * fontSize > h && Math.random() > 0.95) drops[i] = 0;
                     drops[i]++;
                 }
-                frames++;
-                if (frames >= maxFrames) {
-                    clearInterval(interval);
-                    entranceOverlay.classList.remove('active');
-                    entranceOverlay.innerHTML = '';
-                }
             }
 
-            entranceOverlay.classList.add('active');
-            interval = setInterval(draw, 45);
+            if (matrixInterval) clearInterval(matrixInterval);
+            matrixInterval = setInterval(draw, 45);
+        }
+
+        /* Start / stop matrix rain when player visibility changes */
+        function startMatrixBg() {
+            if (!matrixInterval) initMatrixBg();
+        }
+        function stopMatrixBg() {
+            if (matrixInterval) { clearInterval(matrixInterval); matrixInterval = null; }
         }
 
         document.getElementById('player-float-btn').addEventListener('click', function() {
             player.classList.remove('player-collapsed');
             this.classList.remove('visible');
-            runEntranceAnimation();
+            startMatrixBg();
         });
+
+        toggle.addEventListener('click', function() {
+            player.classList.add('player-collapsed');
+            document.getElementById('player-float-btn').classList.add('visible');
+            stopMatrixBg();
+        });
+
+        /* Start matrix rain immediately if player is visible */
+        if (!player.classList.contains('player-collapsed')) {
+            setTimeout(startMatrixBg, 100);
+        }
 
         /* Auto-play on first user interaction */
         function autoPlay() {
