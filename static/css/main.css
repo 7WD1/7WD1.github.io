@@ -223,6 +223,10 @@ section header h2{
     line-height: 4rem;
 }
 
+#home-subtitle {
+    color: #000;
+}
+
 section .main-body{
     font-family: "BiauKai", "標楷體", "DFKai-SB", serif;
     font-size: 1.3rem;
