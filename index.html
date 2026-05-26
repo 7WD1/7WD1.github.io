@@ -1325,42 +1325,36 @@
         var container = document.getElementById('snow-container');
         if (!container) return;
         var canvas = document.createElement('canvas');
-        canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;';
+        canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:-1;';
         container.appendChild(canvas);
         var ctx = canvas.getContext('2d');
-        var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*<>[]{}';
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()_+-=[]{}|;:,./<>?~';
         var fontSize = 14;
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resize();
-        window.addEventListener('resize', resize);
         var cols = Math.floor(canvas.width / fontSize);
         var drops = [];
-        for (var i = 0; i < cols; i++) drops[i] = Math.random() * -50;
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (var i = 0; i < cols; i++) drops[i] = Math.random() * -100;
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(10, 10, 30, 0.08)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.font = fontSize + 'px monospace';
             for (var i = 0; i < drops.length; i++) {
-                var c = chars[Math.floor(Math.random() * chars.length)];
-                var y = drops[i] * fontSize;
-                ctx.fillStyle = 'rgba(0,255,0,0.35)';
-                ctx.fillText(c, i * fontSize, y);
-                // draw a few trailing chars for trail effect
-                for (var t = 1; t <= 8; t++) {
-                    var ty = y - t * fontSize;
-                    if (ty > 0) {
-                        ctx.fillStyle = 'rgba(0,255,0,' + (0.3 - t * 0.035) + ')';
-                        ctx.fillText(chars[Math.floor(Math.random() * chars.length)], i * fontSize, ty);
-                    }
-                }
-                if (y > canvas.height && Math.random() > 0.98) drops[i] = 0;
+                var text = chars.charAt(Math.floor(Math.random() * chars.length));
+                ctx.fillStyle = Math.random() > 0.95 ? '#0ff' : '#0f0';
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
                 drops[i]++;
             }
-            requestAnimationFrame(draw);
         }
-        draw();
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            cols = Math.floor(canvas.width / fontSize);
+            while (drops.length < cols) drops.push(Math.random() * -100);
+        }
+        window.addEventListener('resize', resizeCanvas);
+        setInterval(drawMatrix, 45);
     })();
 
     // Crab Animation — 3 crabs running back and forth forever
