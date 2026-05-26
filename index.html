@@ -238,9 +238,6 @@
                         <a class="nav-link me-lg-3" href="#honors">HONORS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link me-lg-3" href="#collaborators">COLLABORATORS</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link me-lg-3" href="#contact">CONTACT</a>
                     </li>
                 </ul>
@@ -267,7 +264,21 @@
             <div class="honor-marquee-item"><img src="static/assets/img/honors/honor4.jpg" alt="Honor" loading="lazy"></div>
             <div class="honor-marquee-item"><img src="static/assets/img/honors/honor5.jpg" alt="Honor" loading="lazy"></div>
             <div class="honor-marquee-item"><img src="static/assets/img/honors/honor6.jpg" alt="Honor" loading="lazy"></div>
-            <!-- duplicate for seamless loop -->
+            <!-- duplicate set 1 -->
+            <div class="honor-marquee-item"><img src="static/assets/img/honors/honor1.png" alt="Honor" loading="lazy"></div>
+            <div class="honor-marquee-item"><img src="static/assets/img/honors/honor2.jpg" alt="Honor" loading="lazy"></div>
+            <div class="honor-marquee-item"><img src="static/assets/img/honors/honor3.png" alt="Honor" loading="lazy"></div>
+            <div class="honor-marquee-item"><img src="static/assets/img/honors/honor4.jpg" alt="Honor" loading="lazy"></div>
+            <div class="honor-marquee-item"><img src="static/assets/img/honors/honor5.jpg" alt="Honor" loading="lazy"></div>
+            <div class="honor-marquee-item"><img src="static/assets/img/honors/honor6.jpg" alt="Honor" loading="lazy"></div>
+            <!-- duplicate set 2 -->
+            <div class="honor-marquee-item"><img src="static/assets/img/honors/honor1.png" alt="Honor" loading="lazy"></div>
+            <div class="honor-marquee-item"><img src="static/assets/img/honors/honor2.jpg" alt="Honor" loading="lazy"></div>
+            <div class="honor-marquee-item"><img src="static/assets/img/honors/honor3.png" alt="Honor" loading="lazy"></div>
+            <div class="honor-marquee-item"><img src="static/assets/img/honors/honor4.jpg" alt="Honor" loading="lazy"></div>
+            <div class="honor-marquee-item"><img src="static/assets/img/honors/honor5.jpg" alt="Honor" loading="lazy"></div>
+            <div class="honor-marquee-item"><img src="static/assets/img/honors/honor6.jpg" alt="Honor" loading="lazy"></div>
+            <!-- duplicate set 3 -->
             <div class="honor-marquee-item"><img src="static/assets/img/honors/honor1.png" alt="Honor" loading="lazy"></div>
             <div class="honor-marquee-item"><img src="static/assets/img/honors/honor2.jpg" alt="Honor" loading="lazy"></div>
             <div class="honor-marquee-item"><img src="static/assets/img/honors/honor3.png" alt="Honor" loading="lazy"></div>
@@ -275,32 +286,6 @@
             <div class="honor-marquee-item"><img src="static/assets/img/honors/honor5.jpg" alt="Honor" loading="lazy"></div>
             <div class="honor-marquee-item"><img src="static/assets/img/honors/honor6.jpg" alt="Honor" loading="lazy"></div>
         </div>
-        <script>
-        (function(){
-            var track = document.getElementById('honor-marquee-track');
-            if (!track) return;
-            var items = track.querySelectorAll('.honor-marquee-item');
-            var half = items.length / 2;
-            var speed = 0.15;
-            var pos = 0;
-            var paused = false;
-            function getItemWidth() {
-                return (items[0] ? items[0].offsetWidth : 200) + 16;
-            }
-            function animate() {
-                if (!paused) {
-                    pos += speed;
-                    var singleSet = getItemWidth() * half;
-                    if (pos >= singleSet) pos -= singleSet;
-                    track.style.transform = 'translateX(' + (-pos) + 'px)';
-                }
-                requestAnimationFrame(animate);
-            }
-            track.parentElement.addEventListener('mouseenter', function() { paused = true; });
-            track.parentElement.addEventListener('mouseleave', function() { paused = false; });
-            requestAnimationFrame(animate);
-        })();
-        </script>
     </div>
 
     <!-- Photo -->
@@ -472,86 +457,6 @@
         </div>
     </section>
 
-    <!-- Collaborators -->
-    <section class="bg-gradient-primary-to-secondary-gray mt4 md4" id="collaborators">
-        <div class="container px-5">
-            <header>
-                <h2><i class="bi bi-people-fill"></i>&nbsp;COLLABORATORS <span class="section-subtitle-zh">合作者</span></h2>
-            </header>
-            <div class="collab-carousel">
-                <button class="collab-arrow collab-arrow-left" id="collab-prev" aria-label="Previous"><i class="bi bi-chevron-left"></i></button>
-                <div class="collab-track-wrapper" id="collab-wrapper">
-                    <div class="collab-track" id="collab-track">
-                        <div class="collab-item"><img src="static/assets/img/collaborators/collab1.png" alt="Collaborator" loading="lazy"></div>
-                        <div class="collab-item"><img src="static/assets/img/collaborators/collab2.png" alt="Collaborator" loading="lazy"></div>
-                        <div class="collab-item"><img src="static/assets/img/collaborators/collab3.jpg" alt="Collaborator" loading="lazy"></div>
-                        <div class="collab-item"><img src="static/assets/img/collaborators/collab4.png" alt="Collaborator" loading="lazy"></div>
-                        <div class="collab-item"><img src="static/assets/img/collaborators/collab5.png" alt="Collaborator" loading="lazy"></div>
-                        <div class="collab-item"><img src="static/assets/img/collaborators/collab6.png" alt="Collaborator" loading="lazy"></div>
-                        <div class="collab-item"><img src="static/assets/img/collaborators/collab7.png" alt="Collaborator" loading="lazy"></div>
-                        <!-- duplicate for seamless loop -->
-                        <div class="collab-item"><img src="static/assets/img/collaborators/collab1.png" alt="Collaborator" loading="lazy"></div>
-                        <div class="collab-item"><img src="static/assets/img/collaborators/collab2.png" alt="Collaborator" loading="lazy"></div>
-                        <div class="collab-item"><img src="static/assets/img/collaborators/collab3.jpg" alt="Collaborator" loading="lazy"></div>
-                        <div class="collab-item"><img src="static/assets/img/collaborators/collab4.png" alt="Collaborator" loading="lazy"></div>
-                        <div class="collab-item"><img src="static/assets/img/collaborators/collab5.png" alt="Collaborator" loading="lazy"></div>
-                        <div class="collab-item"><img src="static/assets/img/collaborators/collab6.png" alt="Collaborator" loading="lazy"></div>
-                        <div class="collab-item"><img src="static/assets/img/collaborators/collab7.png" alt="Collaborator" loading="lazy"></div>
-                    </div>
-                </div>
-                <button class="collab-arrow collab-arrow-right" id="collab-next" aria-label="Next"><i class="bi bi-chevron-right"></i></button>
-            </div>
-            <script>
-            (function(){
-                var wrapper = document.getElementById('collab-wrapper');
-                var track = document.getElementById('collab-track');
-                if (!wrapper || !track) return;
-                var items = track.querySelectorAll('.collab-item');
-                var total = items.length;
-                var half = total / 2;
-                var speed = 0.5;
-                var pos = 0;
-                var raf = null;
-                var paused = false;
-
-                function getItemWidth() {
-                    return (items[0] ? items[0].offsetWidth : 180) + 28;
-                }
-
-                function animate() {
-                    if (!paused) {
-                        pos += speed;
-                        var singleSet = getItemWidth() * half;
-                        if (pos >= singleSet) pos -= singleSet;
-                        track.style.transform = 'translateX(' + (-pos) + 'px)';
-                    }
-                    raf = requestAnimationFrame(animate);
-                }
-
-                wrapper.addEventListener('mouseenter', function() { paused = true; });
-                wrapper.addEventListener('mouseleave', function() { paused = false; });
-
-                document.getElementById('collab-prev').addEventListener('click', function() {
-                    var step = getItemWidth();
-                    pos = pos - step;
-                    if (pos < 0) pos += getItemWidth() * half;
-                    track.style.transform = 'translateX(' + (-pos) + 'px)';
-                });
-
-                document.getElementById('collab-next').addEventListener('click', function() {
-                    var step = getItemWidth();
-                    pos = pos + step;
-                    var singleSet = getItemWidth() * half;
-                    if (pos >= singleSet) pos -= singleSet;
-                    track.style.transform = 'translateX(' + (-pos) + 'px)';
-                });
-
-                raf = requestAnimationFrame(animate);
-            })();
-            </script>
-        </div>
-    </section>
-
     <!-- Contact Me -->
     <section class="bg-gradient-primary-to-secondary-light mt4 md4" id="contact">
         <div class="container px-5">
@@ -579,7 +484,7 @@
     <!-- Music Player (NetEase Cloud Music Style) -->
     <div id="music-player" class="music-player">
         <div class="player-entrance-overlay" id="player-entrance-overlay"></div>
-        <audio id="music-audio" src="static/assets/audio/BGM.mp3" loop preload="auto"></audio>
+        <audio id="music-audio" preload="auto"></audio>
         <div class="player-disc" id="player-disc">
             <div class="player-disc-inner">
                 <div class="player-needle" id="player-needle"></div>
@@ -589,7 +494,7 @@
             </div>
         </div>
         <div class="player-info">
-            <div class="player-song">好運來</div>
+            <div class="player-song" id="player-song">好運來</div>
         </div>
         <div class="player-progress" id="player-progress">
             <div class="player-progress-bar" id="player-progress-bar"></div>
@@ -605,8 +510,14 @@
             <input type="range" class="player-volume-slider" id="player-volume-slider" min="0" max="1" step="0.01" value="1" aria-label="Volume">
         </div>
         <div class="player-controls">
+            <button class="player-prev-btn" id="player-prev-btn" aria-label="Previous">
+                <i class="bi bi-skip-start-fill"></i>
+            </button>
             <button class="player-btn" id="player-btn" aria-label="Play">
                 <i class="bi bi-play-fill" id="player-icon"></i>
+            </button>
+            <button class="player-next-btn" id="player-next-btn" aria-label="Next">
+                <i class="bi bi-skip-end-fill"></i>
             </button>
         </div>
         <button class="player-toggle" id="player-toggle" aria-label="Close player">
@@ -634,9 +545,33 @@
         var muteIcon = document.getElementById('player-mute-icon');
         var volumeSlider = document.getElementById('player-volume-slider');
         var entranceOverlay = document.getElementById('player-entrance-overlay');
+        var prevBtn = document.getElementById('player-prev-btn');
+        var nextBtn = document.getElementById('player-next-btn');
+        var songTitle = document.getElementById('player-song');
         var playing = false;
         var noteTimer = null;
         var lastVolume = 1;
+
+        var playlist = [
+            { title: '好運來', src: 'static/assets/audio/BGM.mp3', cover: 'static/assets/img/album-cover.png' },
+            { title: '辣妹子', src: 'static/assets/audio/M500002yHqge3aMpSu.mp3', cover: 'static/assets/img/album-cover.png' }
+        ];
+        var songIndex = 0;
+
+        function loadSong(index) {
+            songIndex = index;
+            if (songIndex < 0) songIndex = playlist.length - 1;
+            if (songIndex >= playlist.length) songIndex = 0;
+            var song = playlist[songIndex];
+            audio.src = song.src;
+            songTitle.textContent = song.title;
+            vinyl.style.backgroundImage = "url('" + song.cover + "')";
+            timeCurrent.textContent = '0:00';
+            timeTotal.textContent = '0:00';
+            progressBar.style.width = '0%';
+        }
+
+        loadSong(0);
 
         function formatTime(s) {
             if (isNaN(s)) return '0:00';
@@ -747,6 +682,27 @@
                 setPlayingState();
                 startNotes();
             }
+        });
+
+        prevBtn.addEventListener('click', function() {
+            loadSong(songIndex - 1);
+            audio.play().catch(function(){});
+            setPlayingState();
+            startNotes();
+        });
+
+        nextBtn.addEventListener('click', function() {
+            loadSong(songIndex + 1);
+            audio.play().catch(function(){});
+            setPlayingState();
+            startNotes();
+        });
+
+        audio.addEventListener('ended', function() {
+            loadSong(songIndex + 1);
+            audio.play().catch(function(){});
+            setPlayingState();
+            startNotes();
         });
 
         audio.addEventListener('timeupdate', function() {

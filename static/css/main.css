@@ -1555,6 +1555,16 @@ section .main-body{
     width: max-content;
     will-change: transform;
     padding: 0 8px;
+    animation: marquee-scroll 240s linear infinite;
+}
+
+.honor-marquee:hover .honor-marquee-track {
+    animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
 .honor-marquee-item {
@@ -1866,6 +1876,31 @@ section .main-body{
 }
 
 .player-btn:active {
+    transform: scale(0.95);
+}
+
+.player-prev-btn, .player-next-btn {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1db954, #1ed760);
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 3px 10px rgba(29, 185, 84, 0.3);
+}
+
+.player-prev-btn:hover, .player-next-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 5px 14px rgba(29, 185, 84, 0.4);
+}
+
+.player-prev-btn:active, .player-next-btn:active {
     transform: scale(0.95);
 }
 
