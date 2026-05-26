@@ -192,7 +192,8 @@
     </nav>
 
     <!-- Top Section -->
-    <section class="top-section" style="background: linear-gradient(135deg, #000000 0%, #050505 50%, #000000 100%);">
+    <section class="top-section" style="background: linear-gradient(135deg, #000000 0%, #050505 50%, #000000 100%); position: relative; overflow: hidden;">
+        <canvas class="top-matrix-canvas" id="top-matrix-canvas"></canvas>
         <div class="top-section-content">
             <div class="container px-5">
                 <h2 id="top-section-bg-text" class="text-white display-3 lh-1 font-alt"></h2>
@@ -1456,6 +1457,46 @@
         }
         window.addEventListener('resize', resizeCanvas);
         setInterval(drawMatrix, 45);
+    })();
+
+    /* Top Section Matrix Rain */
+    (function() {
+        var topCanvas = document.getElementById('top-matrix-canvas');
+        var topSection = document.querySelector('.top-section');
+        if (!topCanvas || !topSection) return;
+        var ctx = topCanvas.getContext('2d');
+        var fontSize = 14;
+        var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()_+-=[]{}|;:,./<>?~';
+        var drops = [];
+
+        function resize() {
+            topCanvas.width = topSection.offsetWidth;
+            topCanvas.height = topSection.offsetHeight;
+            var cols = Math.floor(topCanvas.width / fontSize);
+            while (drops.length < cols) drops.push(Math.random() * -50);
+            while (drops.length > cols) drops.pop();
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        function drawTopMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+            ctx.fillRect(0, 0, topCanvas.width, topCanvas.height);
+            ctx.font = fontSize + 'px monospace';
+            var cols = Math.floor(topCanvas.width / fontSize);
+            for (var i = 0; i < cols; i++) {
+                var text = chars.charAt(Math.floor(Math.random() * chars.length));
+                var isHead = Math.random() > 0.95;
+                ctx.fillStyle = isHead ? '#0ff' : '#0f0';
+                ctx.shadowColor = isHead ? '#0ff' : '#0f0';
+                ctx.shadowBlur = isHead ? 8 : 4;
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                ctx.shadowBlur = 0;
+                if (drops[i] * fontSize > topCanvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(drawTopMatrix, 45);
     })();
 
     // Crab Animation — 3 crabs running back and forth forever
