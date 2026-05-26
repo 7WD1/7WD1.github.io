@@ -63,8 +63,12 @@
         <div class="loading-content">
             <div class="loading-glitch" id="loading-glitch">LOADING WEN-DONG JIANG HOMEPAGE</div>
             <div class="loading-terminal" id="loading-terminal"></div>
-            <div class="loading-bar-track"><div class="loading-bar-fill" id="loading-bar"></div></div>
+            <div class="loading-bar-row">
+                <div class="loading-skull" id="loading-skull">☠</div>
+                <div class="loading-bar-track"><div class="loading-bar-fill" id="loading-bar"></div></div>
+            </div>
             <div class="loading-status" id="loading-status">INITIALIZING...</div>
+            <div class="loading-hint" id="loading-hint">☠ Click anywhere to accelerate breach ☠</div>
         </div>
         <div class="scanline"></div>
     </div>
@@ -100,37 +104,43 @@
         var bar = document.getElementById('loading-bar');
         var status = document.getElementById('loading-status');
         var glitch = document.getElementById('loading-glitch');
+        var skull = document.getElementById('loading-skull');
+        var ls = document.getElementById('loading-screen');
         var lines = [
-            '> Scanning network ports...',
-            '> Found target: wendongjiang@ieee.org',
-            '> Bypassing firewall...',
-            '> Firewall bypassed [OK]',
-            '> Decrypting AES-256 encryption...',
-            '> Access granted...',
-            '> Downloading profile data...',
-            '> SYSTEM BREACH COMPLETE'
+            '> ☠ Scanning network ports...',
+            '> Found target: wendongjiang@ieee.org 💀',
+            '> ☠ Bypassing firewall...',
+            '> Firewall bypassed [OK] 💀',
+            '> ☠ Decrypting AES-256 encryption...',
+            '> Access granted... 💀',
+            '> ☠ Downloading profile data...',
+            '> SYSTEM BREACH COMPLETE ☠💀☠'
         ];
+        var skulls = ['☠', '💀', '☠', '💀', '☠', '💀'];
         var lineIdx = 0, charIdx = 0, progress = 0;
+        var speedMultiplier = 1;
+        var skipRequested = false;
+        var typeTimer = null;
+
         function typeLine() {
+            clearTimeout(typeTimer);
+            if (skipRequested) {
+                while (lineIdx < lines.length) {
+                    terminal.textContent += lines[lineIdx] + '\n';
+                    lineIdx++;
+                }
+                terminal.scrollTop = terminal.scrollHeight;
+                finishLoading();
+                return;
+            }
             if (lineIdx >= lines.length) {
-                glitch.classList.add('glitch-done');
-                status.textContent = 'ACCESS GRANTED';
-                status.style.color = '#0f0';
-                bar.style.width = '100%';
-                setTimeout(function() {
-                    clearInterval(matrixInterval);
-                    clearInterval(glitchInterval);
-                    window.removeEventListener('resize', resizeCanvas);
-                    var ls = document.getElementById('loading-screen');
-                    ls.classList.add('crash-out');
-                    setTimeout(function() { ls.style.display = 'none'; }, 800);
-                }, 400);
+                finishLoading();
                 return;
             }
             if (charIdx < lines[lineIdx].length) {
                 terminal.textContent += lines[lineIdx].charAt(charIdx);
                 charIdx++;
-                setTimeout(typeLine, 8 + Math.random() * 15);
+                typeTimer = setTimeout(typeLine, (8 + Math.random() * 15) / speedMultiplier);
             } else {
                 terminal.textContent += '\n';
                 terminal.scrollTop = terminal.scrollHeight;
@@ -139,13 +149,60 @@
                 progress = Math.min(100, Math.round((lineIdx / lines.length) * 100));
                 bar.style.width = progress + '%';
                 status.textContent = progress + '% COMPLETE';
-                setTimeout(typeLine, 60 + Math.random() * 100);
+                typeTimer = setTimeout(typeLine, (60 + Math.random() * 100) / speedMultiplier);
             }
         }
+
+        function finishLoading() {
+            glitch.classList.add('glitch-done');
+            status.textContent = 'ACCESS GRANTED';
+            status.style.color = '#0f0';
+            bar.style.width = '100%';
+            clearTimeout(typeTimer);
+            setTimeout(function() {
+                clearInterval(matrixInterval);
+                clearInterval(glitchInterval);
+                clearInterval(skullFloatInterval);
+                window.removeEventListener('resize', resizeCanvas);
+                ls.classList.add('crash-out');
+                setTimeout(function() { ls.style.display = 'none'; }, 800);
+            }, 400);
+        }
+
         setTimeout(typeLine, 500);
         var glitchInterval = setInterval(function() {
             glitch.style.transform = 'translate(' + (Math.random()*6-3) + 'px,' + (Math.random()*4-2) + 'px)';
         }, 80);
+
+        /* Click to accelerate / skip */
+        ls.addEventListener('click', function(e) {
+            if (skipRequested) return;
+            if (speedMultiplier === 1) {
+                speedMultiplier = 8;
+                document.getElementById('loading-hint').textContent = '☠ CLICK AGAIN TO FORCE BREACH ☠';
+                document.getElementById('loading-hint').style.color = '#ff0';
+            } else {
+                skipRequested = true;
+                document.getElementById('loading-hint').textContent = '☠ FORCING BREACH... ☠';
+                document.getElementById('loading-hint').style.color = '#f00';
+            }
+        });
+
+        /* Floating skull decorations in background */
+        var skullFloatInterval = setInterval(function() {
+            if (Math.random() > 0.7) {
+                var s = document.createElement('div');
+                s.className = 'float-skull';
+                s.textContent = skulls[Math.floor(Math.random() * skulls.length)];
+                s.style.left = Math.random() * 100 + '%';
+                s.style.top = Math.random() * 100 + '%';
+                s.style.fontSize = (1 + Math.random() * 2) + 'rem';
+                s.style.animationDuration = (2 + Math.random() * 3) + 's';
+                s.style.animationDelay = (Math.random() * 0.5) + 's';
+                ls.appendChild(s);
+                setTimeout(function() { if (s.parentNode) s.parentNode.removeChild(s); }, 5000);
+            }
+        }, 800);
     })();
     </script>
 
@@ -1515,6 +1572,49 @@
             el.style.opacity = 0.8 + Math.random() * 0.2;
             container.appendChild(el);
         }
+    })();
+    </script>
+
+    <!-- Global Click Particle Burst -->
+    <script>
+    (function() {
+        var colors = ['#0f0', '#0ff', '#1db954', '#2ee06e', '#adff2f'];
+        document.addEventListener('click', function(e) {
+            var burst = document.createElement('div');
+            burst.className = 'click-burst';
+            burst.style.left = e.clientX + 'px';
+            burst.style.top = e.clientY + 'px';
+            document.body.appendChild(burst);
+
+            /* Expanding ring */
+            var ring = document.createElement('div');
+            ring.className = 'click-ring';
+            burst.appendChild(ring);
+
+            /* Exploding particles */
+            var count = 12 + Math.floor(Math.random() * 8);
+            for (var i = 0; i < count; i++) {
+                var p = document.createElement('div');
+                p.className = 'click-particle';
+                var angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.5;
+                var dist = 40 + Math.random() * 60;
+                var px = Math.cos(angle) * dist + 'px';
+                var py = Math.sin(angle) * dist + 'px';
+                p.style.setProperty('--px', px);
+                p.style.setProperty('--py', py);
+                var color = colors[Math.floor(Math.random() * colors.length)];
+                p.style.background = color;
+                p.style.boxShadow = '0 0 6px ' + color + ', 0 0 12px ' + color;
+                var size = 3 + Math.random() * 5;
+                p.style.width = size + 'px';
+                p.style.height = size + 'px';
+                burst.appendChild(p);
+            }
+
+            setTimeout(function() {
+                if (burst.parentNode) burst.parentNode.removeChild(burst);
+            }, 900);
+        });
     })();
     </script>
 
