@@ -1612,6 +1612,8 @@ section .main-body{
     right: 24px;
     z-index: 19999;
     width: 320px;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
     background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 100%);
     border-radius: 16px;
     padding: 20px;
@@ -1931,7 +1933,7 @@ section .main-body{
     .music-player {
         width: 280px;
         right: 12px;
-        bottom: 50px;
+        bottom: calc(50px + env(safe-area-inset-bottom));
         padding: 16px;
     }
 
