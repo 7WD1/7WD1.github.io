@@ -1567,20 +1567,23 @@
         setInterval(drawTopMatrix, 45);
     })();
 
-    // Crab Animation — 3 crabs running back and forth forever
+    // Ocean Creatures Animation — multiple colorful fish swimming back and forth forever
     (function() {
         var container = document.getElementById('crab-container');
         if (!container) return;
-        for (var i = 0; i < 3; i++) {
+        var creatures = ['🐠', '🐟', '🐡', '🦑', '🦐', '🐙'];
+        var count = 10;
+        for (var i = 0; i < count; i++) {
             var el = document.createElement('span');
             el.className = 'crab';
-            el.textContent = '🦀';
-            el.style.bottom = (2 + Math.random() * 10) + 'px';
-            el.style.fontSize = (1.1 + Math.random() * 0.5) + 'em';
-            var dur = 8 + i * 4 + Math.random() * 3;
+            el.textContent = creatures[Math.floor(Math.random() * creatures.length)];
+            el.style.bottom = (2 + Math.random() * 12) + 'px';
+            el.style.fontSize = (1.0 + Math.random() * 0.6) + 'em';
+            var dur = 12 + Math.random() * 8;
             el.style.animationDuration = dur + 's';
-            el.style.animationDelay = (i * 2.5) + 's';
-            el.style.opacity = 0.8 + Math.random() * 0.2;
+            el.style.animationDelay = (Math.random() * 5) + 's';
+            el.style.opacity = 0.7 + Math.random() * 0.3;
+            el.style.filter = 'hue-rotate(' + (Math.random() * 60 - 30) + 'deg)';
             container.appendChild(el);
         }
     })();
