@@ -1517,80 +1517,85 @@ section .main-body{
     border: 1px solid #ffeeba;
 }
 
-/* ===== Honors Carousel ===== */
-.honor-carousel {
-    position: relative;
-    margin-top: 12px;
-}
-
-.honor-track-wrapper {
+/* ===== Honors Marquee Strip ===== */
+.honor-marquee {
+    background: linear-gradient(180deg, #000 0%, #0a0a0a 100%);
+    border-top: 1px solid rgba(0, 255, 0, 0.15);
+    border-bottom: 1px solid rgba(0, 255, 0, 0.15);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.06), inset 0 0 30px rgba(0, 255, 0, 0.03);
     overflow: hidden;
-    mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+    padding: 10px 0;
+    position: relative;
+    z-index: 1;
 }
 
-.honor-track {
+.honor-marquee::before,
+.honor-marquee::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 60px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.honor-marquee::before {
+    left: 0;
+    background: linear-gradient(to right, #000, transparent);
+}
+
+.honor-marquee::after {
+    right: 0;
+    background: linear-gradient(to left, #000, transparent);
+}
+
+.honor-marquee-track {
     display: flex;
     flex-wrap: nowrap;
-    gap: 24px;
+    gap: 16px;
     width: max-content;
     will-change: transform;
+    padding: 0 8px;
 }
 
-.honor-item {
+.honor-marquee-item {
     flex-shrink: 0;
-    width: 240px;
-    height: 160px;
-    border-radius: 12px;
+    width: 200px;
+    height: 130px;
+    border-radius: 10px;
     overflow: hidden;
-    background: #fff;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-    transition: transform 0.3s, box-shadow 0.3s;
+    background: #111;
+    box-shadow: 0 0 12px rgba(0, 255, 0, 0.1);
+    border: 1px solid rgba(0, 255, 0, 0.12);
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
 }
 
-.honor-item:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(29, 185, 84, 0.15);
+.honor-marquee-item:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.25), 0 4px 16px rgba(0,0,0,0.3);
+    border-color: rgba(0, 255, 0, 0.4);
+    z-index: 3;
 }
 
-.honor-item img {
+.honor-marquee-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    opacity: 0.85;
+    transition: opacity 0.3s;
 }
 
-.honor-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    width: 44px;
-    height: 44px;
-    border: none;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.9);
-    color: #1db954;
-    font-size: 1.2rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.12);
-    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+.honor-marquee-item:hover img {
+    opacity: 1;
 }
 
-.honor-arrow:hover {
-    background: #1db954;
-    color: #fff;
-    box-shadow: 0 4px 16px rgba(29, 185, 84, 0.3);
+@media screen and (max-width: 768px) {
+    .honor-marquee-item {
+        width: 160px;
+        height: 105px;
+    }
 }
-
-.honor-arrow:active {
-    transform: translateY(-50%) scale(0.92);
-}
-
-.honor-arrow-left { left: 4px; }
-.honor-arrow-right { right: 4px; }
 
 /* ===== Music Player (NetEase Cloud Music Style) ===== */
 .music-player {
@@ -1977,14 +1982,9 @@ section .main-body{
 }
 
 @media screen and (max-width: 768px) {
-    .honor-item {
-        width: 180px;
-        height: 120px;
-    }
-    .honor-arrow {
-        width: 38px;
-        height: 38px;
-        font-size: 1rem;
+    .honor-marquee-item {
+        width: 160px;
+        height: 105px;
     }
 }
 
