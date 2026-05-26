@@ -1522,6 +1522,99 @@ section .main-body{
     gap: 16px;
 }
 
+.player-volume-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding: 0 4px;
+}
+
+.player-mute-btn {
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    color: #888;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+    flex-shrink: 0;
+}
+
+.player-mute-btn:hover {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+}
+
+.player-volume-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    flex: 1;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+}
+
+.player-volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #1db954;
+    cursor: pointer;
+    box-shadow: 0 0 6px rgba(29, 185, 84, 0.4);
+    transition: transform 0.15s;
+}
+
+.player-volume-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.3);
+}
+
+.player-volume-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #1db954;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 6px rgba(29, 185, 84, 0.4);
+}
+
+/* ===== Player Entrance Animation (Matrix Rain) ===== */
+.player-entrance-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.player-entrance-overlay.active {
+    opacity: 1;
+}
+
+.player-entrance-overlay canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 .player-btn {
     width: 48px;
     height: 48px;

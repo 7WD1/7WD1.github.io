@@ -546,6 +546,7 @@
 
     <!-- Music Player (NetEase Cloud Music Style) -->
     <div id="music-player" class="music-player">
+        <div class="player-entrance-overlay" id="player-entrance-overlay"></div>
         <audio id="music-audio" src="static/assets/audio/BGM.mp3" loop preload="auto"></audio>
         <div class="player-disc" id="player-disc">
             <div class="player-disc-inner">
@@ -564,6 +565,12 @@
         <div class="player-time">
             <span id="player-time-current">0:00</span>
             <span id="player-time-total">0:00</span>
+        </div>
+        <div class="player-volume-row">
+            <button class="player-mute-btn" id="player-mute-btn" aria-label="Mute">
+                <i class="bi bi-volume-up-fill" id="player-mute-icon"></i>
+            </button>
+            <input type="range" class="player-volume-slider" id="player-volume-slider" min="0" max="1" step="0.01" value="1" aria-label="Volume">
         </div>
         <div class="player-controls">
             <button class="player-btn" id="player-btn" aria-label="Play">
@@ -591,8 +598,13 @@
         var timeTotal = document.getElementById('player-time-total');
         var toggle = document.getElementById('player-toggle');
         var player = document.getElementById('music-player');
+        var muteBtn = document.getElementById('player-mute-btn');
+        var muteIcon = document.getElementById('player-mute-icon');
+        var volumeSlider = document.getElementById('player-volume-slider');
+        var entranceOverlay = document.getElementById('player-entrance-overlay');
         var playing = false;
         var noteTimer = null;
+        var lastVolume = 1;
 
         function formatTime(s) {
             if (isNaN(s)) return '0:00';
@@ -614,6 +626,40 @@
             needle.classList.remove('needle-active');
             playing = false;
         }
+
+        function updateMuteIcon() {
+            if (audio.muted || audio.volume === 0) {
+                muteIcon.className = 'bi bi-volume-mute-fill';
+            } else if (audio.volume < 0.5) {
+                muteIcon.className = 'bi bi-volume-down-fill';
+            } else {
+                muteIcon.className = 'bi bi-volume-up-fill';
+            }
+        }
+
+        /* Volume controls */
+        volumeSlider.addEventListener('input', function() {
+            var val = parseFloat(volumeSlider.value);
+            audio.volume = val;
+            if (val > 0 && audio.muted) audio.muted = false;
+            updateMuteIcon();
+        });
+
+        muteBtn.addEventListener('click', function() {
+            if (audio.muted || audio.volume === 0) {
+                audio.muted = false;
+                if (audio.volume === 0) {
+                    audio.volume = lastVolume > 0 ? lastVolume : 0.5;
+                    volumeSlider.value = audio.volume;
+                }
+            } else {
+                lastVolume = audio.volume;
+                audio.muted = true;
+            }
+            updateMuteIcon();
+        });
+
+        audio.addEventListener('volumechange', updateMuteIcon);
 
         /* Floating music notes */
         var noteSymbols = ['♩','♪','♫','♬','♪','♫'];
@@ -693,9 +739,54 @@
             player.classList.add('player-collapsed');
             document.getElementById('player-float-btn').classList.add('visible');
         });
+
+        /* Entrance animation: green matrix rain when player opens */
+        function runEntranceAnimation() {
+            if (!entranceOverlay) return;
+            entranceOverlay.innerHTML = '';
+            var canvas = document.createElement('canvas');
+            entranceOverlay.appendChild(canvas);
+            var ctx = canvas.getContext('2d');
+            var w = entranceOverlay.offsetWidth || 320;
+            var h = entranceOverlay.offsetHeight || 400;
+            canvas.width = w;
+            canvas.height = h;
+            var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*';
+            var fontSize = 10;
+            var cols = Math.floor(w / fontSize);
+            var drops = [];
+            for (var i = 0; i < cols; i++) drops[i] = Math.random() * -20;
+            var frames = 0;
+            var maxFrames = 60;
+            var interval;
+
+            function draw() {
+                ctx.fillStyle = 'rgba(10, 10, 30, 0.15)';
+                ctx.fillRect(0, 0, w, h);
+                ctx.font = fontSize + 'px monospace';
+                for (var i = 0; i < drops.length; i++) {
+                    var text = chars.charAt(Math.floor(Math.random() * chars.length));
+                    ctx.fillStyle = Math.random() > 0.95 ? '#0ff' : '#0f0';
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                    if (drops[i] * fontSize > h && Math.random() > 0.95) drops[i] = 0;
+                    drops[i]++;
+                }
+                frames++;
+                if (frames >= maxFrames) {
+                    clearInterval(interval);
+                    entranceOverlay.classList.remove('active');
+                    entranceOverlay.innerHTML = '';
+                }
+            }
+
+            entranceOverlay.classList.add('active');
+            interval = setInterval(draw, 45);
+        }
+
         document.getElementById('player-float-btn').addEventListener('click', function() {
             player.classList.remove('player-collapsed');
             this.classList.remove('visible');
+            runEntranceAnimation();
         });
 
         /* Auto-play on first user interaction */
