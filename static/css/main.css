@@ -1549,14 +1549,15 @@ section .main-body{
 }
 
 .honor-marquee-track {
+    --honor-scroll-duration: 72s;
     display: flex;
     flex-wrap: nowrap;
     gap: 16px;
     width: max-content;
     will-change: transform;
     padding: 0 8px;
-    animation: marquee-scroll 240s linear infinite;
-    -webkit-animation: marquee-scroll 240s linear infinite;
+    animation: marquee-scroll var(--honor-scroll-duration) linear infinite;
+    -webkit-animation: marquee-scroll var(--honor-scroll-duration) linear infinite;
 }
 
 .honor-marquee:hover .honor-marquee-track {
@@ -1564,13 +1565,13 @@ section .main-body{
 }
 
 @-webkit-keyframes marquee-scroll {
-    0% { -webkit-transform: translateX(0); }
-    100% { -webkit-transform: translateX(-50%); }
+    0% { -webkit-transform: translate3d(0, 0, 0); }
+    100% { -webkit-transform: translate3d(-50%, 0, 0); }
 }
 
 @keyframes marquee-scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-50%, 0, 0); }
 }
 
 .honor-marquee-item {
@@ -1605,6 +1606,10 @@ section .main-body{
 }
 
 @media screen and (max-width: 768px) {
+    .honor-marquee-track {
+        --honor-scroll-duration: 42s;
+    }
+
     .honor-marquee-item {
         width: 160px;
         height: 105px;
