@@ -513,7 +513,7 @@ section .main-body{
         float: none;
         display: flex;
         justify-content: center;
-        margin: 0 auto;
+        margin: 2.5rem auto 0 auto;
         top: 0;
     }
     #avatar img {
