@@ -1452,7 +1452,7 @@ section .main-body{
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background-image: url('../img/album-cover.png');
+    background-image: url('../assets/img/album-cover.png');
     background-size: cover;
     background-position: center;
     box-shadow: 0 0 6px rgba(29, 185, 84, 0.4);
