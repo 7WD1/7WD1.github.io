@@ -2174,6 +2174,14 @@ section .main-body{
     will-change: transform;
     animation: crab-back-forth linear infinite;
     animation-fill-mode: backwards;
+    display: inline-flex;
+    align-items: center;
+}
+
+.crab svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
 }
 
 @keyframes crab-back-forth {

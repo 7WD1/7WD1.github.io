@@ -1567,23 +1567,24 @@
         setInterval(drawTopMatrix, 45);
     })();
 
-    // Ocean Creatures Animation — multiple colorful fish swimming back and forth forever
+    // Claude Mascots Animation — orange Claude characters swimming across the bottom
     (function() {
         var container = document.getElementById('crab-container');
         if (!container) return;
-        var creatures = ['🐠', '🐟', '🐡', '🦑', '🦐', '🐙'];
-        var count = 10;
+        var claudeSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1em" height="1em"><g transform="translate(50,50)"><circle r="18" fill="#E87C4E"/><ellipse rx="7" ry="22" fill="#E87C4E" transform="rotate(0)"/><ellipse rx="7" ry="22" fill="#E87C4E" transform="rotate(60)"/><ellipse rx="7" ry="22" fill="#E87C4E" transform="rotate(120)"/><circle r="12" fill="#F4A261"/></g></svg>';
+        var count = 8;
         for (var i = 0; i < count; i++) {
             var el = document.createElement('span');
             el.className = 'crab';
-            el.textContent = creatures[Math.floor(Math.random() * creatures.length)];
+            el.innerHTML = claudeSvg;
             el.style.bottom = (2 + Math.random() * 12) + 'px';
-            el.style.fontSize = (1.0 + Math.random() * 0.6) + 'em';
+            el.style.fontSize = (1.2 + Math.random() * 0.8) + 'em';
             var dur = 12 + Math.random() * 8;
             el.style.animationDuration = dur + 's';
             el.style.animationDelay = (Math.random() * 5) + 's';
             el.style.opacity = 0.7 + Math.random() * 0.3;
-            el.style.filter = 'hue-rotate(' + (Math.random() * 60 - 30) + 'deg)';
+            var hueShift = Math.random() * 30 - 15;
+            el.style.filter = 'hue-rotate(' + hueShift + 'deg)';
             container.appendChild(el);
         }
     })();
