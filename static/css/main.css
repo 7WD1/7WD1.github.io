@@ -1986,11 +1986,22 @@ section .main-body{
 
 .player-float-btn.visible {
     display: flex;
+    animation: float-btn-spin 3s linear infinite;
+}
+
+@keyframes float-btn-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 .player-float-btn:hover {
-    transform: scale(1.1);
+    animation: float-btn-spin-hover 3s linear infinite;
     box-shadow: 0 6px 20px rgba(29, 185, 84, 0.5);
+}
+
+@keyframes float-btn-spin-hover {
+    from { transform: rotate(0deg) scale(1.1); }
+    to { transform: rotate(360deg) scale(1.1); }
 }
 
 /* ===== Floating Music Notes ===== */
