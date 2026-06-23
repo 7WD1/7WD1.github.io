@@ -11,6 +11,7 @@
 
 #### 學歷
 **淡江大學**，資訊工程學系博士，新北市，台灣 (2023 – 2026)
+- 論文：[從異常識別到因果解釋：弱監督視訊異常檢測方法研究 (From Anomaly Recognition to Causal Explanation: Research on Weakly-Supervised Video Anomaly Detection Methods)]
 
 **銘傳大學**，資訊工程學系碩士，桃園市，台灣 (2021 – 2023)
 - 論文：[一個基於LIME的新可解釋機器學習及其評估方法之研究 (The Research of a New LIME-based Method for Interpretable Machine Learning and its Evaluation Methods)](https://ndltd.ncl.edu.tw/cgi-bin/gs32/gsweb.cgi/login?o=dnclcdr&s=id=%22111MCU00392008%22.&searchmode=basic)
