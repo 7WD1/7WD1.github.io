@@ -19,3 +19,6 @@ node_modules/
 .omc/
 .omx/
 .claude/
+
+# Local working files (not website content)
+/build_resume.py
