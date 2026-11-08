@@ -734,13 +734,13 @@
       },
       {
         type: 'journal',
-        authors: 'W.-D. Jiang, T.-J. Lin, C.-Y. Chang, and D. Sinha Roy',
-        title: 'Parallel Explainable Internet of Medical Things Framework with a Structured Multi-Agent Patient-State Representation for Hepatocellular Carcinoma Survival Prediction',
+        authors: 'W.-D. Jiang, T.-J. Lin, C.-Y. Chang, and D. S. Roy',
+        title: 'Parallel Explainable Internet of Medical Things Framework With a Structured Multiagent Patient-State Representation for Hepatocellular Carcinoma Survival Prediction',
         venue: 'IEEE Internet of Things Journal',
+        vol: '13', no: '22', pages: '54285–54303', day: 15, month: 'Nov.',
         year: 2026,
         jcr: 'Q1', if: '8.7',
-        note: 'Accepted',
-        doi: 'https://ieeexplore.ieee.org/document/11677096',
+        doi: 'https://doi.org/10.1109/JIOT.2026.3730481',
         cover: 'static/assets/img/iotj.webp',
       },
       {
@@ -825,7 +825,7 @@
     }
 
     function buildPubDate(pub) {
-      return [pub.month, pub.year].filter(Boolean).join(' ');
+      return [pub.day, pub.month, pub.year].filter(Boolean).join(' ');
     }
 
     function normalizePages(pages) {
